@@ -1,5 +1,50 @@
+html {background-color: #E0E1FF;
+}
+
+body {
+    margin:1.5rem;
+}
+
 h1 {
     font-family: "tomarik-display", sans-serif;
     font-weight: 400;
     font-style: normal;
+    color: #2d2e73;
+}
+
+h2 {
+    font-family: "tablet-gothic", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: #2d2e73;
+}
+
+li {
+    font-family: "tablet-gothic", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: #2d2e73;
+}
+
+p {
+    font-family: "tablet-gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #2d2e73;
+}
+
+.feature {
+    width: 30vw;
+}
+
+.creator-photo {
+    width: 30vw;
+}
+
+footer {
+    margin: 0;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
