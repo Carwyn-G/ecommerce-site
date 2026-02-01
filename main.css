@@ -41,6 +41,14 @@ p {
     width: 30vw;
 }
 
+.shop {
+    width: 25vw;
+}
+
+.product-main {
+    width: 40vw;
+}
+
 footer {
     margin: 0;
     position: relative;
