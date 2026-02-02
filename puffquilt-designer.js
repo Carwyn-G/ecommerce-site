@@ -1,7 +1,7 @@
 let quilt = [];
-let width = 15;
-let height = 20;
-let size = 30;
+let width = 15;   //To do: add inputs on html side that can control width and height
+let height = 20;  //make sure to set min and max dimensions, no mega quilts or single pixel ones
+let size = 32;
 let x = 0;
 let spacing = 15;
 let colors = 12;
@@ -99,6 +99,9 @@ let lastClickedColumn = 0;
 let lastClickedRow = 0;
 
 function mouseClicked() {
+//ambitious thought: try to add some sort of bucket fill tool
+  //loop that checks adjacent cells for the same color id?
+
   //clicking in the palette sets the current color
   if (mouseY < (size*colorPalette.length)) {
     let colorRow = Math.floor(mouseX / size);
@@ -109,6 +112,8 @@ function mouseClicked() {
   else if (mouseX < (buttonWidth) && mouseY<(size*colorPalette.length + buttonHeight)){
     quilt[lastClickedColumn][lastClickedRow][2]=previousColor[column][row];
   }
+  //save button saves entire canvas
+  //To Do: Set save field only to quilt grid
   else if (mouseY<(size*colorPalette.length + buttonHeight)){
     saveCanvas();
     }
@@ -126,8 +131,5 @@ function mouseClicked() {
 function keyPressed() {
   if (keyIsDown(17) && keyIsDown(90)) {
     quilt[lastClickedColumn][lastClickedRow][2]=previousColor[column][row];
-  }
-  if (keyIsDown(17) && keyIsDown(83)) {
-    saveCanvas();
   }
 }
