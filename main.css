@@ -1,18 +1,61 @@
-html {background-color: #E0E1FF;
-}
 
 body {
+    display: grid;
+    grid-template-areas: 
+    "header header header"
+    "main main main"
+    "footer footer footer";
+    margin:0%;
+}
+header {
+    grid-area: header;
+    background-color: #E0E1FF;
+}
+.heading{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: start;
+    align-items: center;
+}
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+h1 {
+    justify-self: center;
+}
+.cart{
+    margin: 1.5rem;
+    justify-self: end;
+}
+main{
     margin:1.5rem;
+    grid-area: main;
+}
+footer {
+    grid-area: footer;
+}
+ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+.home-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: stretch;
 }
 
-h1 {
+h2 {
     font-family: "tomarik-display", sans-serif;
     font-weight: 400;
     font-style: normal;
     color: #2d2e73;
+    font-size:x-large;
 }
 
-h2 {
+h3 {
     font-family: "tablet-gothic", sans-serif;
     font-weight: 600;
     font-style: normal;
@@ -24,6 +67,9 @@ li {
     font-weight: 600;
     font-style: normal;
     color: #2d2e73;
+    margin-right: 1rem;
+    text-align: center;
+    font-size: large;
 }
 
 p {
@@ -52,7 +98,13 @@ p {
 footer {
     margin: 0;
     position: relative;
-    left: 0;
     bottom: 0;
     width: 100%;
+}
+h6{
+    font-family: "tablet-gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #2d2e73;
+    margin-left: 1rem;
 }
