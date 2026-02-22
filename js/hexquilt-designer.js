@@ -1,7 +1,8 @@
-let width = 15;
-let height = 20;
+let width = 10;
+let oddRowWidth=width-1;
+let height = 15;
 let quiltBase = [];
-let hexWidth = 35;
+let hexWidth = 50;
 let hexHeight = (hexWidth/Math.sqrt(3))*2;
 let rowHeight = (hexHeight*0.75);
 let a = hexWidth/2; //from side edge to center line
@@ -13,7 +14,6 @@ let c = (hexHeight-faceHexHeight)/2;
 let d = (faceHexWidth/2); //from side edge to center line of face hexagon
 let e = (faceHexHeight/4); //space from outer hexagon vertex to inner hexagon vertex
 let quiltFace = [];
-let colorIndicatorSize = hexWidth*2;
 let colors = 12;
 let currentColor = [0, 0, 100];
 let previousColor = [];
@@ -26,10 +26,11 @@ let colorPalette = [
     [350,100,55],[40,95,100],[75,90,90],[120,100,25],[180,100,60],[240,100,40],[265,50,100],[300,100,70],[330,40,100],[25,40,100],[0,0,100],[0,0,75]
   ]
 ];
-let buttonWidth=((colors*hexWidth)/2);
-let buttonHeight=hexWidth;
+let buttonHeight=30;
+let buttonWidth=((colors*buttonHeight)/2);
 let buttonRadius=10;
 let spacing = buttonHeight*1.5;
+let colorIndicatorSize = buttonHeight*2;
 let y=((colorPalette.length*buttonHeight) + buttonHeight+spacing);
 
 //generates and fill array grid to supply p5 with x,y and hsb
@@ -45,7 +46,7 @@ for (i = 0; i < height; i++) {
     }
     else {
         x=hexWidth;
-        for (j = 0; j < width; j++) {
+        for (j = 0; j < oddRowWidth; j++) {
         across.push([x, y, currentColor]);
         x=x+hexWidth;
     }
@@ -59,22 +60,24 @@ y = ((colorPalette.length*buttonHeight) + buttonHeight+spacing)+c;
 //generates and fill array grid to supply p5 with x,y and hsb 
 // for position and size of face hexagons
 for (i = 0; i < height; i++) {
-
     across = [];
     if (i%2 === 0) {
         x=hexWidth/2;
+        for (j = 0; j < width; j++) {
+        across.push([x, y, currentColor]);
+        x=x+faceHexWidth+faceHexSpacing;
+    }
     }
     else {
         x=hexWidth;
-    }
-    for (j = 0; j < width; j++) {
+        for (j = 0; j < oddRowWidth; j++) {
         across.push([x, y, currentColor]);
         x=x+faceHexWidth+faceHexSpacing;
+    }
     }
     quiltFace.push(across);
     y += rowHeight;
 }
-console.log(quiltFace);
 
 //generates and fills array grid to supply p5 with previous color of each square for undo
 for (i = 0; i < height; i++) {
@@ -84,10 +87,14 @@ for (i = 0; i < height; i++) {
   }
   previousColor.push(across);
 }
-
 function setup(){
     //Set canvas to quilt width by quilt height + colorpalette + buffer
-    createCanvas(hexWidth * width, (rowHeight * height) + (colorPalette.length*buttonHeight)+(buttonHeight*3));
+    if ((hexWidth*width)<(buttonHeight*colors + colorIndicatorSize)){
+        createCanvas((buttonHeight*colors + colorIndicatorSize), (rowHeight * height) + (colorPalette.length*buttonHeight)+(buttonHeight*3));
+    }
+    else{
+        createCanvas(hexWidth * width, (rowHeight * height) + (colorPalette.length*buttonHeight)+(buttonHeight*3));
+    }
     colorMode(HSB);
     background(0, 0, 100);
 
@@ -96,36 +103,36 @@ function setup(){
     for (i = 0; i < colors; i++) {
         push();
         fill(colorPalette[0][i]);
-        square(hexWidth * i, 0, hexWidth, 5);
+        square(buttonHeight * i, 0, buttonHeight, 5);
         pop();
     }
     for (i = 0; i < colors; i++) {
         push();
         fill(colorPalette[1][i]);
-        square(hexWidth * i, hexWidth, hexWidth, 5);
+        square(buttonHeight * i, buttonHeight, buttonHeight, 5);
         pop();
     }
     x=0;
-    rect(x,(hexWidth*colorPalette.length),buttonWidth,buttonHeight,buttonRadius);
+    rect(x,(buttonHeight*colorPalette.length),buttonWidth,buttonHeight,buttonRadius);
     textSize(16);
     textAlign(CENTER,CENTER);
-    text('UNDO',x,(hexWidth*colorPalette.length),buttonWidth,buttonHeight);
-    rect(buttonWidth,(hexWidth*colorPalette.length),buttonWidth,buttonHeight,buttonRadius);
-    text('SAVE',buttonWidth,(hexWidth*colorPalette.length),buttonWidth,buttonHeight);
+    text('UNDO',x,(buttonHeight*colorPalette.length),buttonWidth,buttonHeight);
+    rect(buttonWidth,(buttonHeight*colorPalette.length),buttonWidth,buttonHeight,buttonRadius);
+    text('SAVE',buttonWidth,(buttonHeight*colorPalette.length),buttonWidth,buttonHeight);
     textSize(14);
-    text('Click to change the color of the face hexagon, Control-Click to change the color of the back (outline) hexagon', 0, (hexWidth*3), colors*hexWidth, hexHeight);
+    text('Click to change the color of the face hexagon, Control-Click to change the color of the back (outline) hexagon', 0, (buttonHeight*3), (colors*buttonHeight+colorIndicatorSize), spacing);
 }
 
 function draw(){
     push();
     fill(currentColor);
-    square(hexWidth*colors,0,colorIndicatorSize,10);
+    square(buttonHeight*colors,0,colorIndicatorSize,10);
     pop();
 
 
     //draw quilt grid based on quilt array data
     for (i = 0; i < height; i++) {
-        for (j = 0; j < width; j++) {
+        for (j = 0; j < quiltBase[i].length; j++) {
             push();
             fill(quiltBase[i][j][2]);
             beginShape();
@@ -141,7 +148,7 @@ function draw(){
         }
     }
     for (i = 0; i < height; i++) {
-        for (j = 0; j < width; j++) {
+        for (j = 0; j < quiltFace[i].length; j++) {
             push();
             fill(quiltFace[i][j][2]);
             beginShape();
@@ -157,21 +164,28 @@ function draw(){
         }
     }
 }
+
 let column = 0;
 let row = 0;
 let lastClickedColumn = 0;
 let lastClickedRow = 0;
+let undoBaseLayer = false;
 
 function mouseClicked() {
     //clicking in the palette sets the current color
-    if (mouseY < (buttonHeight*colorPalette.length)) {
+    if (mouseY < (buttonHeight*colorPalette.length) && mouseX < buttonHeight*colors) {
         let colorRow = Math.floor(mouseX / buttonHeight);
         let colorColumn = Math.floor(mouseY / buttonHeight);
         currentColor = colorPalette[colorColumn][colorRow];
     }
     //an undo button sets the last clicked square to its previous color
     else if (mouseX < (buttonWidth) && mouseY<(buttonHeight*colorPalette.length + buttonHeight)){
-        quiltBase[lastClickedRow][lastClickedColumn][2]=previousColor[column][row];
+        if (undoBaseLayer==true){
+            quiltBase[lastClickedRow][lastClickedColumn][2]=previousColor[column][row];
+        }
+        else{
+            quiltFace[lastClickedRow][lastClickedColumn][2]=previousColor[column][row];
+        }
     }
     else if (mouseX < (buttonWidth*2) && mouseY<(buttonHeight*colorPalette.length + buttonHeight)){
         saveCanvas();
@@ -191,6 +205,7 @@ function mouseClicked() {
                 quiltBase[row][column][2] = currentColor;
                 lastClickedColumn = column;
                 lastClickedRow = row;
+                undoBaseLayer = true;
         }
         else {
             row = Math.floor((mouseY - ((colorPalette.length*buttonHeight) + buttonHeight+spacing)) / rowHeight);
@@ -204,6 +219,7 @@ function mouseClicked() {
                 quiltFace[row][column][2] = currentColor;
                 lastClickedColumn = column;
                 lastClickedRow = row;
+                undoBaseLayer = false;
         }
     }
 }
