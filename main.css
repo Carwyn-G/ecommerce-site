@@ -6,39 +6,54 @@ body {
     /* Header/Navbar */
 header {
     background-color: #E0E1FF;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    align-items: center;
     max-height: 20vh;
     width: 100%;
 }
 main {
-    margin: 5%;
+    margin: 3%;
     margin-top: 1%;
 }
 
-    /* Will need to set up hamburger menu for mobile view */
+nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
 .navbar{
+    justify-self: start;
     display: flex;
     flex-direction: row;
-    align-items: center;
 }
-/* header h1 {
+
+@media (max-width: 650px) {
+    .navbar {
+        flex-direction: column;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+}
+
+h1 {
     justify-self: center;
-} */
+}
+
 .cart-icon{
     margin: 1.5rem;
     justify-self: end;
 }
-header ul {
+
+nav ul {
     list-style: none;
     padding-left: 1rem;
 }
 
     /* Footer, would like to figure out fixing it to bottom of the page */
 footer {
-    padding: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     width: 100%;
     text-align: center;
     margin-top: auto;
@@ -157,6 +172,15 @@ p {
     margin: .25em;
     margin-top: 0;
 }
+
+.product-page {
+    display: grid;
+    grid-template-columns: 2fr, 1fr;
+}
+/* 
+.product-main {
+    width: 100%;
+} */
 
 /* About Page */
 .creator-photo {

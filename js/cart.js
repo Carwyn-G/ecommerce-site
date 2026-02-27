@@ -1,34 +1,34 @@
-let cart = document.getElementsByClassName("add-to-cart")
+const cart = [];
 
-let cartArray;
-
-if (localStorage.cart){
-    cartArray = JSON.parse(localStorage.cart)
-}
-    else {
-        cartArray = [];
+function addToCart(name, price) {
+    const item = cart.find(product => product.name === name);
+    if (item) {
+        item.quantity++;
+    } else {
+        cart.push({ name, price, quantity: 1 });
     }
-
-if (cartArray.length>0){
-    dataset.cart.src = "images/full-cart.svg"
+    updateCart();
 }
 
-for (i=0;i<add-to-cart.length;i++){
-    cart[i].addEventListener("click", addToCart);
+function removeFromCart(name) {
+    cart = cart.filter(product => product.name !== name);
+    updateCart();
 }
 
-function addToCart(){
-    let cartItem = {
-        id: this.dataset.id,
-        img: this.dataset.img,
-    }
-
-for(i=0; i<cartArray.length; i++){
-    if(this.dataset.id === cartArray[i].id){
-        cartArray.splice(i,1,);
-    }
-}
-
-    cartArray.push(cartItem);
-    localStorage.cart = JSON.stringify(cartArray);
+function updateCart() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach(product => {
+        const li = document.createElement('li');
+        li.textContent = `${product.name} - $${product.price} x ${product.quantity}`;
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.onclick = () => removeFromCart(product.name);
+        li.appendChild(removeButton);
+        cartItems.appendChild(li);
+        total += product.price * product.quantity;
+    });
+    cartTotal.textContent = total;
 }
