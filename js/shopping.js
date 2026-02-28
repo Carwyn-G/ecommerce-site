@@ -1,8 +1,10 @@
+//Array of products that can be referenced and called to rather than needing to rewrite things repeatedly
 const products = [
   {
     name: "Blue Phoenix Puff Quilt",
     price: 450,
-    id: "../products/puff-phoenix.html",
+    id: "puff-phoenix",
+    link: "../products/puff-phoenix.html",
     img: "../images/puff-phoenix.jpg",
     desc: "A puff quilt with a pixel art design of a phoenix in a blue chromatic color scheme",
     secondImg: "../images/puff-phoenix-detail.jpg",
@@ -13,7 +15,8 @@ const products = [
   {
     name: "Transit Map Cross Stitch",
     price: 200,
-    id: "../products/xstitch-map.html",
+    id: "xstitch-map",
+    link: "../products/xstitch-map.html",
     img: "../images/xstitch-map-detail.jpeg",
     desc: "A cross-stitched transit map showing the routes throughout Walt Disney World, zoomed in to focus on Animal Kingdom",
     secondImg: "../images/xstitch-map.jpeg",
@@ -24,7 +27,8 @@ const products = [
   {
     name: "Confetti Pride Hexagon Quilt",
     price: 350,
-    id: "../products/hex-pride.html",
+    id: "hex-pride",
+    link: "../products/hex-pride.html",
     img: "../images/hex-pride.jpg",
     desc: "A quilt made up of hexagons in a variety of LGBTQ pride prints on a white background, with scattered hexagons of solid colors of the rainbow",
     secondImg: "../images/hex-pride-reverse.jpg",
@@ -35,7 +39,8 @@ const products = [
   {
     name: "Black and Gold Hexagon Quilt",
     price: 250,
-    id: "../products/#",
+    id: "hex-blackgold",
+    link: "../products/hex-blackgold.html",
     img: "../images/hex-blackgold.jpg",
     desc: "A quilt made up of black hexagons of different fabrics with golden borders around each hexagon",
     secondImg: "../images/hex-blackgold-detail.jpg",
@@ -46,7 +51,8 @@ const products = [
   {
     name: "Zebra Print Puff Quilt",
     price: 400,
-    id: "../products/#",
+    id: "puff-zebra",
+    link: "../products/puff-zebra.html",
     img: "../images/puff-zebra.png",
     desc: "A puff quilt with a zebra print design made up of white and black squares",
     secondImg: "../images/puff-zebra-detail.png",
@@ -57,7 +63,8 @@ const products = [
     {
     name: "Honey Bee Hexagon Quilt",
     price: 250,
-    id: "../products/#",
+    id: "hex-bee",
+    link: "../products/hex-bee.html",
     img: "../images/hex-bee.jpg",
     desc: "A hexagon quilt made up of a variety of honeybee themed print fabrics in yellows and blacks",
     secondImg: "../images/hex-bee-reverse.jpg",
@@ -68,7 +75,8 @@ const products = [
     {
     name: "Bi Pride Hexagon Quilt",
     price: 250,
-    id: "../products/#",
+    id: "hex-bi",
+    link: "../products/hex-bi.html",
     img: "../images/hex-bi.jpg",
     desc: "A quilt made up of scattered hexagons in pink, purple, and blue to represent the bisexual pride flag, a few white hexagons dot the quilt with images of cute, celebratory animals",
     secondImg: "../images/hex-bi-reverse.jpg",
@@ -79,7 +87,8 @@ const products = [
     {
     name: "Genderfluid Pride Hexagon Quilt",
     price: 275,
-    id: "../products/#",
+    id: "hex-fluid",
+    link: "../products/hex-fluid.html",
     img: "../images/hex-fluid.jpg",
     desc: "A quilt made up of scattered hexagons in pink, white, purple, black, and blue to represent the genderfluid pride flag",
     secondImg: "../images/hex-fluid-reverse.jpg",
@@ -90,7 +99,8 @@ const products = [
     {
     name: "Custom Puff Quilt",
     price: 400,
-    id: "../products/#",
+    id: "puff-custom",
+    link: "../products/puff-custom.html",
     img: "../images/puff-custom-1.jpg",
     desc: "A puff quilt with a pixel art design of a forest campground with a campfire in front of a tent and a crescent moon hanging in the sky",
     secondImg: "../images/puff-custom-2.jpg",
@@ -99,20 +109,50 @@ const products = [
     thirdDesc: "A puff quilt with a pixel art design of a bookshelf and an orange electric guitar"
   },
 ];
+let cart = [];
 
-const shopMain = document.getElementById("shop-main");
+if (document.getElementById("shop-main") !== null) {
+  const shopMain = document.getElementById("shop-main");
 
-products.forEach(result => {
-  // Construct card content
-  const content = `
-    <div class="product">
-        <img src="${result.img}" alt="${result.desc}">
-        <h3>${result.name}</h3>
-        <h3>&dollar; ${result.price}</h3>
-        <div class="border-bottom"></div>
-        <a href="${result.id}"</a>
-        </div>
-    `;
-  // Append newyly created card element to the container
-  shopMain.innerHTML += content;
+  products.forEach(result => {
+    // create card for each product
+    const catalog = `
+      <div class="product">
+          <a href= "${result.link}"><img src="${result.img}" alt="${result.desc}"></a>
+          <h3>${result.name}</h3>
+          <h3>&dollar; ${result.price}</h3>
+          <div class="border-bottom"></div>
+          <a href="${result.id}"</a>
+          </div>
+      `;
+    //Add the card to the main products page
+    shopMain.innerHTML += catalog;
+  });
+}
+
+function addToCart(y){
+  cart.push(y);
+}
+
+if (document.getElementById("hex-pride") !== null){
+  console.log("The script is running on this page")
+  let productPage = document.getElementsByClassName("product-page");
+  let target = "hex-pride";
+  let targeted = products.findIndex(function(x){
+    return x.id === target;
 });
+
+  let productInfo = `
+    <div class = "product-detail">
+      <img src="${products[targeted].img}" alt="${products[targeted].desc}">
+      <img src="${products[targeted].secondImg}" alt="${products[targeted].secondDesc}">
+      <img src="${products[targeted].thirdImg}" alt="$$products[targeted].thirdDesc">
+      <h3>${products[targeted].name}</h3>
+      <h3>&dollar; ${products[targeted].price}</h3>
+    </div>`
+
+  productPage.innerHTML += "productInfo";
+
+  let addButton = document.getElementById("add")
+  addButton.addEventListener('click', addToCart(products[targeted]))
+}
