@@ -13,6 +13,8 @@ const products = [
     thirdImg: "../images/hex-pride-detail.jpg",
     thirdDesc:
       "Confetti pride hexagon quilt with one corner folded back to partially show both the face and reverse at the same time.",
+    quantity: 0,
+    longDesc: "This throw quilt was created to celebrate Pride Month and be a joyful, cozy representation of the love we have for ourselves. Made of 100% cotton, this lightweight quilt is easy to clean and small enough to take on the go for use as a picnic blanket or to warm up with at outdoor events. The quilt measures approximately 50\"\ by 65\"\ (127 by 165cm), but due to the handmade nature of the quilt there may be slight variations in the final product compared to the photos shown."
   },
   {
     name: "Transit Map Cross Stitch",
@@ -27,6 +29,8 @@ const products = [
     thirdImg: "../images/xstitch-map-detail-alt.jpeg",
     thirdDesc:
       "A focused view of Magic Kingdom and the surrounding area with the monorail and ferry lines mapped out in different color stitching",
+    quantity: 0,
+    longDesc: "This cross-stitched artwork features a map of transit routes throughout Walt Disney World and measures approximately 15\"\ by 12\"\ (38 by 30 cm). The parks and bodies of water are dyed onto the cloth while the transit routes are stitched in different colors. A key in the bottom right corner labels each color with the corresponding monorail, bus line, or other route. The artwork comes premounted on a dark navy mat board to be easily hung in a frame of your choice."
   },
   {
     name: "Blue Phoenix Puff Quilt",
@@ -40,6 +44,8 @@ const products = [
       "Close-up of the puff quilt focused on the face of the phoenix, a variety of fabric prints make up the puffs",
     thirdImg: "../images/puff-phoenix-detail-alt.png",
     thirdDesc: "Slightly zoomed in to focus on the phoenix's body and head",
+    quantity: 0,
+    longDesc: "This puff quilt uses a pixel art style to represent a phoenix in shades of blue. The quilt measures approximately 50\"\ by 65\"\ (127 by 165cm), but due to the handmade nature of the quilt there may be slight variations in the final product compared to the photos shown. The face of the quilt is made up of cotton fabric and each puff is stuffed with fluffy polyester filling. The backing is a light blue flannel to make this quilt nice and cozy to snuggle up under. Please see the FAQ for care instructions for washing puff quilts."
   },
   {
     name: "Black and Gold Hexagon Quilt",
@@ -54,6 +60,8 @@ const products = [
     thirdImg: "../images/hex-blackgold-reverse.jpeg",
     thirdDesc:
       "The quilt draped over a sofa to show the reverse of the quilt made up of metallic gold fabric",
+    quantity: 0,
+    longDesc: "This throw quilt has a bold black and gold. Made of 100% cotton, this lightweight quilt is easy to clean and small enough to take on the go for use as a picnic blanket or to warm up with at outdoor events. The quilt measures approximately 50\"\ by 65\"\ (127 by 165cm), but due to the handmade nature of the quilt there may be slight variations in the final product compared to the photos shown."
   },
   {
     name: "Zebra Print Puff Quilt",
@@ -68,6 +76,8 @@ const products = [
     thirdImg: "../images/puff-zebra-detail-alt.png",
     thirdDesc:
       "A close up of a red heart applique on one puff at the corner of the quilt",
+    quantity: 0,
+    longDesc: "This puff quilt is designed with a zebra print pattern in an assortment of different white and black fabrics. It also has a red heart appliqued onto one puff in the top left corner. This quilt has extra length compared to the typical throws available and measures approximately 50\"\ by 80\"\ (127 by 203 cm), but due to the handmade nature of the quilt there may be slight variations in the final product compared to the photos shown. The face of the quilt is made up of cotton fabric and each puff is stuffed with fluffy polyester filling. The backing is a zebra print fleece to make this quilt as warm and cozy as possible to snuggle up under. Please see the FAQ for care instructions for washing puff quilts."
   },
   {
     name: "Honey Bee Hexagon Quilt",
@@ -82,6 +92,8 @@ const products = [
     thirdImg: "../images/hex-bee-detail.jpg",
     thirdDesc:
       "A close up of the quilt showing different fabric prints featuring bees and flowers in shades of yellow.",
+    quantity: 0,
+    longDesc: "This throw quilt features a lively assortment of floral and bumblebee prints in yellows and blacks. Made of 100% cotton, this lightweight quilt is easy to clean and small enough to take on the go for use as a picnic blanket or to warm up with at outdoor events. The quilt measures approximately 50\"\ by 65\"\ (127 by 165cm), but due to the handmade nature of the quilt there may be slight variations in the final product compared to the photos shown."
   },
   {
     name: "Bi Pride Hexagon Quilt",
@@ -95,6 +107,8 @@ const products = [
       "The reverse of the quilt is mostly grey with interspersed hexagons of pink, purple, and blue arranged in the stripes of the bi pride flag",
     thirdImg: "../images/hex-bi-alt.jpg",
     thirdDesc: "The bi pride hexagon quilt is shown draped over a bed",
+    quantity: 0,
+    longDesc: "This throw quilt was created to celebrate Pride Month and in particular bi pride. Made of 100% cotton, this lightweight quilt is easy to clean and small enough to take on the go for use as a picnic blanket or to warm up with at outdoor events. The quilt measures approximately 50\"\ by 65\"\ (127 by 165cm), but due to the handmade nature of the quilt there may be slight variations in the final product compared to the photos shown."
   },
   {
     name: "Genderfluid Pride Hexagon Quilt",
@@ -109,6 +123,8 @@ const products = [
     thirdImg: "../images/hex-fluid-detail.jpg",
     thirdDesc:
       "A close up shows a cross-stitched bee in the genderfluid pride colors, with the words bee proud beneath it",
+    quantity: 0,
+    longDesc: "This throw quilt was created to celebrate Pride Month and in particular genderfluid pride. On one hexagon, it features a cross-stitched bee, also in the genderfluid pride flag colors, along with the words \"\Bee Proud\"\. Made of 100% cotton, this lightweight quilt is easy to clean and small enough to take on the go for use as a picnic blanket or to warm up with at outdoor events. The quilt measures approximately 50\"\ by 65\"\ (127 by 165cm), but due to the handmade nature of the quilt there may be slight variations in the final product compared to the photos shown."
   },
   {
     name: "Custom Puff Quilt",
@@ -123,27 +139,12 @@ const products = [
     thirdImg: "../images/puff-custom-3.jpeg",
     thirdDesc:
       "A puff quilt with a pixel art design of a bookshelf and an orange electric guitar",
+    quantity: 0,
+    longDesc: "If you're looking for something personal, custom quilts are available and can be designed with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the \"\Design\"\ page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and only 6 fabrics used for the face, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality. Please see the FAQ for care instructions for washing puff quilts."
   },
 ];
-let cart = [];
 
-if (document.getElementById("shop-main") !== null) {
-  const shopMain = document.getElementById("shop-main");
-
-  products.forEach((result) => {
-    // create card for each product
-    const catalog = `
-      <div class="product">
-          <a href= "${result.link}"><img src="${result.img}" alt="${result.desc}"></a>
-          <h3>${result.name}</h3>
-          <h3>&dollar; ${result.price}</h3>
-          </div>
-      `;
-    //Add the card to the main products page
-    shopMain.innerHTML += catalog;
-  });
-}
-
+//Generate home page
 if (document.getElementById("home-main") !== null) {
   const homeMain = document.getElementById("home-main");
   console.log("this is the home page");
@@ -162,11 +163,26 @@ if (document.getElementById("home-main") !== null) {
   }
 }
 
-function addToCart(y) {
-  cart.push(y);
+//Generate shop page
+if (document.getElementById("shop-main") !== null) {
+  const shopMain = document.getElementById("shop-main");
+
+  products.forEach((result) => {
+    // create card for each product
+    const catalog = `
+      <div class="product">
+          <a href= "${result.link}"><img src="${result.img}" alt="${result.desc}"></a>
+          <h3>${result.name}</h3>
+          <h3>&dollar; ${result.price}</h3>
+          </div>
+      `;
+    //Add the card to the main products page
+    shopMain.innerHTML += catalog;
+  });
 }
+
+//Generate product pages
 let targetProduct = "hex-pride";
-console.log(targetProduct);
 if (document.getElementById(targetProduct) !== null) {
   console.log("This is the hex pride page");
   let productPage = document.getElementById(targetProduct);
@@ -175,31 +191,34 @@ if (document.getElementById(targetProduct) !== null) {
   });
   console.log(targeted);
   let productInfo = `
-    <div class = "product-detail">
-      <h2>${products[targeted].name}</h2>
+    <div class = "product-images">
       <img src="${products[targeted].img}" alt="${products[targeted].desc}">
       <img src="${products[targeted].secondImg}" alt="${products[targeted].secondDesc}">
       <img src="${products[targeted].thirdImg}" alt="${products[targeted].thirdDesc}">
-      <h3>&dollar; ${products[targeted].price}</h3>
-      <button class="button" id="add-${products[targeted].id}">Add To Cart</button>
+    </div>
+    <div class = "product-details">
+      <h2>${products[targeted].name}</h2>
+      <div class = "add-to-cart">
+        <h3>&dollar; ${products[targeted].price}</h3>
+        <button class="button" id="add-${products[targeted].id}">Add To Cart</button>
+      </div>
+      <div class="long desc">
+        <p>${products[targeted].longDesc}</p>
+      </div>
     </div>`;
 
   console.log(productInfo);
-  console.log(`add-${products[targeted].id}`);
   productPage.innerHTML += productInfo;
 
   let addButton = document.getElementById(`add-${products[targeted].id}`);
   document
     .getElementById(`add-${products[targeted].id}`)
     .addEventListener("click", function () {
-      console.log("the button is clicking");
-      cart.push(products[targeted]);
-      console.log(cart);
+      addToCart(products[targeted]);
     });
 }
 
 targetProduct = "puff-phoenix";
-console.log(targetProduct);
 if (document.getElementById(targetProduct) !== null) {
   console.log("This is the puff phoenix page");
   let productPage = document.getElementById(targetProduct);
@@ -208,29 +227,34 @@ if (document.getElementById(targetProduct) !== null) {
   });
   console.log(targeted);
   let productInfo = `
-    <div class = "product-detail">
-      <h2>${products[targeted].name}</h2>
+    <div class = "product-images">
       <img src="${products[targeted].img}" alt="${products[targeted].desc}">
       <img src="${products[targeted].secondImg}" alt="${products[targeted].secondDesc}">
       <img src="${products[targeted].thirdImg}" alt="${products[targeted].thirdDesc}">
-      <h3>&dollar; ${products[targeted].price}</h3>
-      <button class="button" id="add-${products[targeted].id}">Add To Cart</button>
+    </div>
+    <div class = "product-details">
+      <h2>${products[targeted].name}</h2>
+      <div class = "add-to-cart">
+        <h3>&dollar; ${products[targeted].price}</h3>
+        <button class="button" id="add-${products[targeted].id}">Add To Cart</button>
+      </div>
+      <div class="long desc">
+        <p>${products[targeted].longDesc}</p>
+      </div>
     </div>`;
 
   console.log(productInfo);
-  console.log(`add-${products[targeted].id}`);
   productPage.innerHTML += productInfo;
 
   let addButton = document.getElementById(`add-${products[targeted].id}`);
   document
     .getElementById(`add-${products[targeted].id}`)
     .addEventListener("click", function () {
-      console.log("the button is clicking");
+      addToCart(products[targeted]);
     });
 }
 
 targetProduct = "xstitch-map";
-console.log(targetProduct);
 if (document.getElementById(targetProduct) !== null) {
   console.log("This is the crossstitch map page");
   let productPage = document.getElementById(targetProduct);
@@ -239,23 +263,53 @@ if (document.getElementById(targetProduct) !== null) {
   });
   console.log(targeted);
   let productInfo = `
-    <div class = "product-detail">
-      <h2>${products[targeted].name}</h2>
+    <div class = "product-images">
       <img src="${products[targeted].img}" alt="${products[targeted].desc}">
       <img src="${products[targeted].secondImg}" alt="${products[targeted].secondDesc}">
       <img src="${products[targeted].thirdImg}" alt="${products[targeted].thirdDesc}">
-      <h3>&dollar; ${products[targeted].price}</h3>
-      <button class="button" id="add-${products[targeted].id}">Add To Cart</button>
+    </div>
+    <div class = "product-details">
+      <h2>${products[targeted].name}</h2>
+      <div class = "add-to-cart">
+        <h3>&dollar; ${products[targeted].price}</h3>
+        <button class="button" id="add-${products[targeted].id}">Add To Cart</button>
+      </div>
+      <div class="long desc">
+        <p>${products[targeted].longDesc}</p>
+      </div>
     </div>`;
 
   console.log(productInfo);
-  console.log(`add-${products[targeted].id}`);
   productPage.innerHTML += productInfo;
 
   let addButton = document.getElementById(`add-${products[targeted].id}`);
   document
     .getElementById(`add-${products[targeted].id}`)
     .addEventListener("click", function () {
-      console.log("the button is clicking");
+      addToCart(products[targeted]);
     });
 }
+
+//Functions for managing cart
+function findItem(y){
+    return y.id == targetProduct;
+}
+
+function addToCart(y) {
+  if (localStorage.getItem("cart") !== null) {
+  console.log("cart exists")
+  cartArr = JSON.parse(localStorage.getItem("cart"));
+      cartArr.push(y);
+      console.log(cartArr);
+      let cartCheck = cartArr.findIndex(findItem);
+      console.log(cartCheck);
+      localStorage.setItem("cart", JSON.stringify(cartArr));
+  }
+  else {
+    console.log("Cart does not exist")
+    let cartArr=[];
+    cartArr.push(y);
+    localStorage.setItem("cart", JSON.stringify(cartArr));
+  }
+}
+
