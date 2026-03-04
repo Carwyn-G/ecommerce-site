@@ -7,40 +7,28 @@
         <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="https://use.typekit.net/awa3vuh.css">
         <link rel="stylesheet" href="https://use.typekit.net/awa3vuh.css">
-        <script src="js/cart.js" defer></script>
+        <script src="js/shopping.js" defer></script>
     </head>
     <body>
-        <header>
-            <nav>
-                <ul class="navbar">
-                    <li><a href="products.html">Shop</a></li>
-                    <li><a href="designer.html">Design</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                </ul>
-                <h1><a href="index.html"><img class="logo" src="images/rooliyay-logotype.svg" alt = "Rooliyay Creations" height="60rem"></a></h1>
-                <a class="cart-icon" href="cart.html"><img src="images/cart.svg" alt="Cart" height="30rem"></a>
-            </nav>
-        </header>
+    <header>
+      <nav>
+        <ul class="navbar">
+          <li><a href="products.html">Shop</a></li>
+          <li><a href="designer.html">Design</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="index.html" class="logo"><img src="images/rooliyay-logotype.svg" alt="Rooliyay Creations"  height="60rem"/></a>
+        <div class="cart-icon">
+          <a href="cart.html"><img src="images/cart.svg" alt="Cart" height="30rem"/></a>
+          <h3 class="cart-indicator"></h3>
+        </div>
+      </nav>
+    </header>
         <main>
-            <div id="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Price</th>
-                            <th>Qty</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                    </tbody>
-                </table>
-                <hr>
-                <div id="buttons">
-                    <a href="index.html" class="btn btn-primary">Back to Home</a>
-                    <a id="checkout-btn" class="btn btn-success">Checkout</a>
-                </div>
-            </div>
+            <section id="cart-page">
+                <!-- Automatically filled in by shopping.js -->
+            </section>
         </main>
         <footer>
             <h6>&copy; 2026 Rooliyay Creations</h6>
