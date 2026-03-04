@@ -80,22 +80,6 @@ const products = [
     longDesc: "This puff quilt is designed with a zebra print pattern in an assortment of different white and black fabrics. It also has a red heart appliqued onto one puff in the top left corner. This quilt has extra length compared to the typical throws available and measures approximately 50\"\ by 80\"\ (127 by 203 cm), but due to the handmade nature of the quilt there may be slight variations in the final product compared to the photos shown. The face of the quilt is made up of cotton fabric and each puff is stuffed with fluffy polyester filling. The backing is a zebra print fleece to make this quilt as warm and cozy as possible to snuggle up under. Please see the FAQ for care instructions for washing puff quilts."
   },
   {
-    name: "Honey Bee Hexagon Quilt",
-    price: 250,
-    id: "hex-bee",
-    link: "../products/hex-bee.html",
-    img: "../images/hex-bee.jpg",
-    desc: "A hexagon quilt made up of a variety of honeybee themed print fabrics in yellows and blacks",
-    secondImg: "../images/hex-bee-reverse.jpg",
-    secondDesc:
-      "The reverse of the quilt shows a scattered arrangement of shades of yellow fabrics with occassional black hexagons",
-    thirdImg: "../images/hex-bee-detail.jpg",
-    thirdDesc:
-      "A close up of the quilt showing different fabric prints featuring bees and flowers in shades of yellow.",
-    quantity: 0,
-    longDesc: "This throw quilt features a lively assortment of floral and bumblebee prints in yellows and blacks. Made of 100% cotton, this lightweight quilt is easy to clean and small enough to take on the go for use as a picnic blanket or to warm up with at outdoor events. The quilt measures approximately 50\"\ by 65\"\ (127 by 165cm), but due to the handmade nature of the quilt there may be slight variations in the final product compared to the photos shown."
-  },
-  {
     name: "Bi Pride Hexagon Quilt",
     price: 250,
     id: "hex-bi",
@@ -131,16 +115,30 @@ const products = [
     price: 400,
     id: "puff-custom",
     link: "../products/puff-custom.html",
-    img: "../images/puff-custom-1.jpg",
-    desc: "A puff quilt with a pixel art design of a forest campground with a campfire in front of a tent and a crescent moon hanging in the sky",
-    secondImg: "../images/puff-custom-2.jpg",
+    img: "../images/puff-custom-1.jpeg",
+    desc: "A puff quilt with a pixel art design of a bookshelf and an orange electric guitar",
+    secondImg: "../images/puff-custom-2.jpeg",
+    secondDesc: "A puff quilt with a spiral design in vibrant rainbow tie-dyed fabrics",
+    thirdImg: "../images/puff-custom-3.jpg",
+    thirdDesc: "A puff quilt with a pixel art design of a carrtoony red fox on a green background",
+    quantity: 1,
+    longDesc: `If you're looking for something personal, custom quilts are available and can be made with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the <a href= "../designer.html">Design</a> page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and only 6 fabrics used for the face, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality. Please see the FAQ for care instructions for washing puff quilts.`
+  },
+  {
+    name: "Custom Hexagon Quilt",
+    price: 250,
+    id: "hex-custom",
+    link: "../products/hex-custom.html",
+    img: "../images/hex-custom.jpg",
+    desc: "A hexagon quilt with a variety of nature themed fabrics in greens and browns, arranged in an ombré",
+    secondImg: "../images/hex-custom-2.jpg",
     secondDesc:
-      "A puff quilt with a pixel art design of a carrtoony red fox on a green background",
-    thirdImg: "../images/puff-custom-3.jpeg",
+      "A hexagon quilt of a hillside against a blue sky with fluffy white clouds made of faux fur",
+    thirdImg: "../images/hex-custom-3.jpg",
     thirdDesc:
-      "A puff quilt with a pixel art design of a bookshelf and an orange electric guitar",
-    quantity: 0,
-    longDesc: "If you're looking for something personal, custom quilts are available and can be designed with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the \"\Design\"\ page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and only 6 fabrics used for the face, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality. Please see the FAQ for care instructions for washing puff quilts."
+      "A hexagon quilt made up of a variety of honeybee themed print fabrics in yellows and blacks",
+    quantity: 1,
+    longDesc: `If you're looking for something personal, custom quilts are available and can be made with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the <a href= "../designer.html">Design</a> page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and 6 fabrics, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality.`
   },
 ];
 
@@ -228,7 +226,6 @@ if (document.getElementById(currentID) !== null) {
       </div>
     </div>`;
 
-  console.log(productInfo);
   productPage.innerHTML += productInfo;
 
   let addButton = document.getElementById(`add-${products[targeted].id}`);
@@ -247,9 +244,11 @@ if (document.getElementById("shopping-cart") !== null) { //check that we're on t
     if (cartArr.length === 0){ //check that the cart contains things
       console.log ("Cart is empty")
       shoppingCart.innerHTML = `
-        <h1>Shopping Cart</h1>
-        <h2>Looks like there's nothing in your cart :(</h2>
-        <h2><a href="products.html">Return to the Store</a></h2>`
+        <div id=empty-cart>
+          <h1>Shopping Cart</h1>
+          <h2>Looks like there's nothing in your cart :(</h2>
+          <h2><a href="products.html">Return to the Store</a></h2>
+        </div>`
     }
     else { //details to load for cart content
       shoppingCart.innerHTML = `
@@ -300,10 +299,30 @@ if (document.getElementById("shopping-cart") !== null) { //check that we're on t
   else {
     console.log("Cart does not exist")
     shoppingCart.innerHTML = `
-      <h1>Shopping Cart</h1>
-      <h2>Looks like there's nothing in your cart :(</h2>
-      <h2><a href="products.html">Return to the Store</a></h2>`
+        <div id=empty-cart>
+          <h1>Shopping Cart</h1>
+          <h2>Looks like there's nothing in your cart :(</h2>
+          <h2><a href="products.html">Return to the Store</a></h2>
+        </div>`
   }
+}
+
+//Generate design tool controls
+if (document.getElementById("tool-controls") !== null) {
+  console.log("this is the design page");
+  document.getElementById("tool-controls").innerHTML = `
+    <button class="button" id="puff-designer">Design a Puff Quilt</button>
+    <button class="button" id="hex-designer">Design a Hex Quilt</button>
+    <div id="p5"></div>`
+
+    let puffButton = document.getElementById("puff-designer");
+    puffButton.addEventListener("click", function () {
+      setPuff();
+    });
+    let hexButton = document.getElementById("hex-designer");
+    hexButton.addEventListener("click", function () {
+      setHex();
+    });
 }
 
 
@@ -319,34 +338,45 @@ function addToCart(y) {
     getIdFromPage();
     cartArr = JSON.parse(localStorage.getItem("cart"));
     cartQuantity = JSON.parse(localStorage.getItem("quantity"));
-    let foundItem = cartArr.findIndex(function(z) {
-      return z.id === currentID;
-      });
-    console.log(foundItem);
-    if (foundItem > -1) { //If the product to be added to the cart already exists in the cart, only increase the quantity, don't push a new copy to the array
-      cartArr[foundItem].quantity++;
-      localStorage.setItem("cart", JSON.stringify(cartArr));
-      cartQuantity++;
-      let cartIndicators = document.getElementsByClassName("cart-indicator");
+    if(currentID === "custom-hex" || currentID === "custom-puff"){ //custom quilts get added to the cart separately rather than just increasing quantity
+        cartArr.push(y);
+        localStorage.setItem("cart", JSON.stringify(cartArr));
+        cartQuantity++;
+        let cartIndicators = document.getElementsByClassName("cart-indicator");
         for(i=0; i<cartIndicators.length; i++){
-          cartIndicators[i].innerHTML = cartQuantity;
-        }
-      localStorage.setItem("quantity", JSON.stringify(cartQuantity));
-      }
+            cartIndicators[i].innerHTML = cartQuantity;
+          }
+        localStorage.setItem("quantity", JSON.stringify(cartQuantity));
+    }
     else {
-      y.quantity++;
-      cartArr.push(y);
-      localStorage.setItem("cart", JSON.stringify(cartArr));
-      cartQuantity++;
-      let cartIndicators = document.getElementsByClassName("cart-indicator");
-      for(i=0; i<cartIndicators.length; i++){
-          cartIndicators[i].innerHTML = cartQuantity;
+      let foundItem = cartArr.findIndex(function(z) {
+        return z.id === currentID;
+        });
+      console.log(foundItem);
+      if (foundItem > -1) { //If the product to be added to the cart already exists in the cart, only increase the quantity, don't push a new copy to the array
+        cartArr[foundItem].quantity++;
+        localStorage.setItem("cart", JSON.stringify(cartArr));
+        cartQuantity++;
+        let cartIndicators = document.getElementsByClassName("cart-indicator");
+          for(i=0; i<cartIndicators.length; i++){
+            cartIndicators[i].innerHTML = cartQuantity;
+          }
+        localStorage.setItem("quantity", JSON.stringify(cartQuantity));
         }
-      localStorage.setItem("quantity", JSON.stringify(cartQuantity));
+      else {
+        y.quantity++;
+        cartArr.push(y);
+        localStorage.setItem("cart", JSON.stringify(cartArr));
+        cartQuantity++;
+        let cartIndicators = document.getElementsByClassName("cart-indicator");
+        for(i=0; i<cartIndicators.length; i++){
+            cartIndicators[i].innerHTML = cartQuantity;
+          }
+        localStorage.setItem("quantity", JSON.stringify(cartQuantity));
+      }
     }
   }
-  else {
-    console.log("Cart does not exist")
+  else { //if cart doesn't already exist, create it
     let cartArr=[];
     y.quantity++;
     cartArr.push(y);
@@ -413,4 +443,15 @@ function productIncrease(position){
     cartIndicators[i].innerHTML = cartQuantity;
   }
   localStorage.setItem("quantity", JSON.stringify(cartQuantity));
+}
+
+//Functions for managing custom design tool page
+function setPuff(){
+  document.getElementById("p5").innerHTML = `
+    <iframe src="puff-designer.html"></iframe>;`
+}
+
+function setHex(){
+  document.getElementById("p5").innerHTML = `
+    <iframe src="hex-designer.html"></iframe>;`
 }

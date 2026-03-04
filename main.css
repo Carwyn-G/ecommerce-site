@@ -8,7 +8,20 @@ body {
 }
 
 button {
+    background-color: #E0E1FF;
+    color: #2d2e73;
+    cursor: pointer;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
     margin: 1em;
+    font-family: "tablet-gothic", sans-serif;
+    text-align: center;
+    font-size: medium;
+    font-weight: bolder;
+    border-radius: 4px;
+    border: 1px solid #2d2e73;
 }
 
 /* Header/Navbar */
@@ -16,6 +29,8 @@ header {
     background-color: #E0E1FF;
     max-height: 20vh;
     width: 100%;
+    position: sticky;
+    top: 0;
 }
 main {
     margin: 3%;
@@ -190,16 +205,12 @@ p {
         row-gap: 5%;
         column-gap: 5%;
     }
-
     .product-images {
         display: grid;
         grid-template-rows: repeat(3, 1fr);
         row-gap: 2em;
         height: 90vh;
         overflow: auto;
-    }
-    .product-images img {
-        width: 100%;
     }
     .product-details {
         display: grid;
@@ -208,12 +219,6 @@ p {
         align-self: start;
         row-gap: 5%;
         column-gap: 5%;
-    }
-
-    .add-to-cart {
-        display: flex;
-        justify-content: space-around;
-        column-gap: 1em;
     }
 }
 
@@ -227,28 +232,29 @@ p {
         height: 60vh;
         overflow: auto;
     }
-
-    .product-images img {
-        width: 100%;
-    }
-
     .product-details {
         display: grid;
         grid-template-rows: repeat(3, auto);
         justify-items: center;
     }
-
-    .add-to-cart {
-        display: flex;
-        justify-content: space-around;
-        column-gap: 1em;
-    }
 }
+
+.product-images img {
+    width: 100%;
+}
+
+.add-to-cart {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    column-gap: 1em;
+}
+
 /* Cart Page */
 @media screen and (min-width: 650px){
 #shopping-cart {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 2fr 1fr;
 }
 
 .cart-heading{
@@ -310,6 +316,10 @@ td {
     align-items: center;
 }
 
+#empty-cart{
+    grid-column: 1/3;
+}
+
 /* About Page */
 .creator-photo {
     float: left;
@@ -320,4 +330,23 @@ td {
 /* Individual Product Page */
 .product-main {
     width: 40vw;
+}
+
+/* Design Tool Page */
+#p5 {
+    overflow: hidden;
+    resize: both;
+    min-width: 500px;
+    min-height: 700px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
+#tool-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
