@@ -4,7 +4,7 @@ let width = quiltSize[0];
 let oddRowWidth=width-1;
 let height = quiltSize[1];
 let quiltBase = [];
-let hexWidth = 50;
+let hexWidth = 30;
 let hexHeight = (hexWidth/Math.sqrt(3))*2;
 let rowHeight = (hexHeight*0.75);
 let a = hexWidth/2; //from side edge to center line
@@ -228,7 +228,7 @@ function mouseClicked() {
 
 function getSizeFromPage(){ //Feels like a silly solution but it makes sense to me and the other methods I found when looking up seemed to rely too much on a lot of frameworks I don't know anything about
   let path = window.location.href;
-  let shortPath = (path.replace("http://127.0.0.1:5500/hex-designer.html?", ""));
+  let shortPath = (path.replace("http://127.0.0.1:5500/minihex-designer.html?", ""));
   console.log(shortPath);
   splitStr = (shortPath.split("&"));
   console.log(splitStr);

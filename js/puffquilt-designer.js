@@ -1,14 +1,16 @@
+let quiltSize = getSizeFromPage();
+
 let quilt = [];
-let width = 15;   //To do: add inputs on html side that can control width and height
-let height = 20;  //make sure to set min and max dimensions, no mega quilts or single pixel ones
 let size = 32;
+let width = quiltSize[0];   //To do: add inputs on html side that can control width and height
+let height = quiltSize[1];  //make sure to set min and max dimensions, no mega quilts or single pixel ones
 let x = 0;
 let spacing = 15;
 let colors = 12;
 let currentColor = [0, 0, 100];
 let previousColor = [];
 let colorIndicatorSize = size*2;
-//color palette of selected colors
+//color palette of personally selected colors
 let colorPalette = [
   [
 	  [0,100,100],[25,95,100],[55,100,100],[120,100,50],[200,60,100],[240,100,100],[245,75,70],[275,100,80],[335,80,90],[20,55,40],[0,0,0],[0,0,35]
@@ -132,4 +134,15 @@ function keyPressed() {
   if (keyIsDown(17) && keyIsDown(90)) {
     quilt[lastClickedColumn][lastClickedRow][2]=previousColor[column][row];
   }
+}
+
+function getSizeFromPage(){ //Feels like a silly solution but it makes sense to me and the other methods I found when looking up seemed to rely too much on a lot of frameworks I don't know anything about
+  let path = window.location.href;
+  let shortPath = (path.replace("http://127.0.0.1:5500/puff-designer.html?", ""));
+  console.log(shortPath);
+  splitStr = (shortPath.split("&"));
+  console.log(splitStr);
+  let quiltWidth = (splitStr[0].replace("width=", ""));
+  let quiltHeight = (splitStr[1].replace("height=", ""));
+  return [quiltWidth, quiltHeight];
 }

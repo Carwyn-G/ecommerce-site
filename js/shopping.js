@@ -2,7 +2,7 @@
 const products = [
   {
     name: "Confetti Pride Hexagon Quilt",
-    price: 350,
+    total: 350,
     id: "hex-pride",
     link: "../products/hex-pride.html",
     img: "../images/hex-pride.jpg",
@@ -18,7 +18,7 @@ const products = [
   },
   {
     name: "Transit Map Cross Stitch",
-    price: 200,
+    total: 200,
     id: "xstitch-map",
     link: "../products/xstitch-map.html",
     img: "../images/xstitch-map-detail.jpeg",
@@ -34,7 +34,7 @@ const products = [
   },
   {
     name: "Blue Phoenix Puff Quilt",
-    price: 450,
+    total: 450,
     id: "puff-phoenix",
     link: "../products/puff-phoenix.html",
     img: "../images/puff-phoenix.jpg",
@@ -49,7 +49,7 @@ const products = [
   },
   {
     name: "Black and Gold Hexagon Quilt",
-    price: 250,
+    total: 250,
     id: "hex-blackgold",
     link: "../products/hex-blackgold.html",
     img: "../images/hex-blackgold.jpg",
@@ -65,7 +65,7 @@ const products = [
   },
   {
     name: "Zebra Print Puff Quilt",
-    price: 400,
+    total: 400,
     id: "puff-zebra",
     link: "../products/puff-zebra.html",
     img: "../images/puff-zebra.png",
@@ -81,7 +81,7 @@ const products = [
   },
   {
     name: "Bi Pride Hexagon Quilt",
-    price: 250,
+    total: 250,
     id: "hex-bi",
     link: "../products/hex-bi.html",
     img: "../images/hex-bi.jpg",
@@ -96,7 +96,7 @@ const products = [
   },
   {
     name: "Genderfluid Pride Hexagon Quilt",
-    price: 275,
+    total: 275,
     id: "hex-fluid",
     link: "../products/hex-fluid.html",
     img: "../images/hex-fluid.jpg",
@@ -112,7 +112,7 @@ const products = [
   },
   {
     name: "Custom Puff Quilt",
-    price: 400,
+    total: 400,
     id: "puff-custom",
     link: "../products/puff-custom.html",
     img: "../images/puff-custom-1.jpeg",
@@ -121,12 +121,19 @@ const products = [
     secondDesc: "A puff quilt with a spiral design in vibrant rainbow tie-dyed fabrics",
     thirdImg: "../images/puff-custom-3.jpg",
     thirdDesc: "A puff quilt with a pixel art design of a carrtoony red fox on a green background",
-    quantity: 1,
-    longDesc: `If you're looking for something personal, custom quilts are available and can be made with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the <a href= "../designer.html">Design</a> page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and only 6 fabrics used for the face, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality. Please see the FAQ for care instructions for washing puff quilts.`
+    quantity: 0,
+    longDesc: `If you're looking for something personal, custom quilts are available and can be made with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the <a href= "../designer.html">Design</a> page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and only 6 fabrics used for the face, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality. Please see the FAQ for care instructions for washing puff quilts.`,
+    price: 400,
+    size: "throw",
+    sizePrice: 0,
+    backing: "cotton",
+    backingPrice: 0,
+    colors: 6,
+    note: "Here you can describe how you'd like your quilt to look (colors, patterns, etc)"
   },
   {
     name: "Custom Hexagon Quilt",
-    price: 250,
+    total: 250,
     id: "hex-custom",
     link: "../products/hex-custom.html",
     img: "../images/hex-custom.jpg",
@@ -137,8 +144,17 @@ const products = [
     thirdImg: "../images/hex-custom-3.jpg",
     thirdDesc:
       "A hexagon quilt made up of a variety of honeybee themed print fabrics in yellows and blacks",
-    quantity: 1,
-    longDesc: `If you're looking for something personal, custom quilts are available and can be made with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the <a href= "../designer.html">Design</a> page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and 6 fabrics, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality.`
+    quantity: 0,
+    longDesc: `If you're looking for something personal, custom quilts are available and can be made with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the <a href= "../designer.html">Design</a> page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and 6 fabrics, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality.`,
+    price: 250,
+    size: "throw",
+    sizePrice: 0,
+    hexsize: "standard",
+    hexPrice: 0,
+    backing: "cotton",
+    backingPrice: 0,
+    colors: 6,
+    note: "Here you can describe how you'd like your quilt to look (colors, patterns, etc)"
   },
 ];
 
@@ -147,16 +163,12 @@ let cartTotal = 0;
 //update cart indicator
   if (localStorage.getItem("quantity") !== null){
     cartQuantity = JSON.parse(localStorage.getItem("quantity"));
-    let cartIndicators = document.getElementsByClassName("cart-indicator");
+    let cartIndicator = document.getElementById("cart-indicator");
     if (cartQuantity <=0){
-      for(i=0; i<cartIndicators.length; i++){
-        cartIndicators[i].innerHTML = "";
-      }
+        cartIndicator.innerHTML = "";
     }
     else {
-        for(i=0; i<cartIndicators.length; i++){
-        cartIndicators[i].innerHTML = cartQuantity;
-      }
+      cartIndicator.innerHTML = cartQuantity;
     }
   }
 
@@ -170,7 +182,7 @@ if (document.getElementById("home-main") !== null) {
       <div class="feature">
           <a href= "${products[i].link}"><img src="${products[i].img}" alt="${products[i].desc}"></a>
           <h2>${products[i].name}</h2>
-          <h2>&dollar; ${products[i].price}</h2>
+          <h2>&dollar; ${products[i].total}</h2>
           </div>
       `;
     //Add the first three cards to the main products page
@@ -189,7 +201,7 @@ if (document.getElementById("shop-main") !== null) {
       <div class="product">
           <a href= "${result.link}"><img src="${result.img}" alt="${result.desc}"></a>
           <h2>${result.name}</h2>
-          <h2>&dollar; ${result.price}</h2>
+          <h2>&dollar; ${result.total}</h2>
           </div>
       `;
     //Add the card to the main products page
@@ -217,9 +229,9 @@ if (document.getElementById(currentID) !== null) {
     </div>
     <div class = "product-details">
       <h1>${products[targeted].name}</h1>
-      <div class = "add-to-cart">
-        <h2>&dollar; ${products[targeted].price}</h2>
-        <button class="button" id="add-${products[targeted].id}">Add To Cart</button>
+      <div id = "add-to-cart">
+        <h2 id="price">&dollar; ${products[targeted].total}</h2>
+        <button class="button cart-add" id="add-${products[targeted].id}">Add To Cart</button>
       </div>
       <div class="long desc">
         <p>${products[targeted].longDesc}</p>
@@ -228,11 +240,79 @@ if (document.getElementById(currentID) !== null) {
 
   productPage.innerHTML += productInfo;
 
+  if (currentID == "hex-custom") {
+    console.log ("custom hex page");
+    let targeted = products.findIndex(function (x) {
+      return x.id === currentID;
+    });
+    let cartAddDetails = document.getElementById("add-to-cart");
+    let customOptions = `
+      <label for="quilt-size">Choose your quilt size:</label>
+      <select name="quilt-size" id="quilt-size" onchange="hexquiltSizePrice(this.value)">
+        <option value="throw">Throw Size (50x65"/127x165cm)</option>
+        <option value="baby">Baby Size (32x40"/81x101cm)(-$80)</option>
+        <option value="twin">Twin (70x90"/178x228cm)(+$40)</option>
+        <option value="queen">Queen (90x108"/228x274cm)(+$80)</option>
+        <option value="king">King (110x108"/279x274cm)(+$100)</option>
+      </select>
+      <label for="hex-size">Choose your hexagon size:</label>
+      <select name="hex-size" id="hex-size" onchange="hexSizePrice(this.value)">
+        <option value="standard">Standard (5"/13cm)</option>
+        <option value="mini">Mini (3"/8cm)(+$50)</option>
+      </select>
+      <label for="backing">Choose your backing material:</label>
+      <select name="backing" id="backing" onchange="hexBackingPrice(this.value)">
+        <option value="cotton">Cotton</option>
+        <option value="flannel">Flannel (+$50)</option>
+        <option value="fleece">Fleece (+$50)</option>
+      </select>
+      <label for="color-adjuster">Choose additional colors:</label>
+      <div class = "color-adjuster">
+        <button class="button" onclick="colorDecrease(${targeted})" id="decrease">-</button>
+        <p id="color-quantity">${products[targeted].colors}</p>
+        <button class="button" onclick="colorIncrease(${targeted})" id="increase">+</button>
+      </div>
+      <label for="notes">Describe your quilt:</label>
+      <textarea id="notes" name="notes" rows="5" cols="40" onfocusout="storeNotes(this.value, ${targeted})">Here you can describe how you'd like your quilt to look (colors, patterns, etc)</textarea>`
+    cartAddDetails.innerHTML += customOptions;
+  }
+
+  if (currentID == "puff-custom") {
+    console.log ("custom puff page");
+    let targeted = products.findIndex(function (x) {
+      return x.id === currentID;
+    });
+    let cartAddDetails = document.getElementById("add-to-cart");
+    let customOptions = `
+      <label for="quilt-size">Choose your quilt size:</label>
+      <select name="quilt-size" id="quilt-size" onchange="puffSizePrice(this.value)">
+        <option value="throw">Throw Size (50x65"/127x165cm)</option>
+        <option value="baby">Baby Size (32x40"/81x101cm)(-$80)</option>
+        <option value="twin">Twin (70x90"/178x228cm)(+$50)</option>
+      </select>
+      <label for="backing">Choose your backing material:</label>
+      <select name="backing" id="backing" onchange="puffBackingPrice(this.value)">
+        <option value="cotton">Cotton</option>
+        <option value="flannel">Flannel (+$50)</option>
+        <option value="fleece">Fleece (+$50)</option>
+      </select>
+      <label for="color-adjuster">Choose additional colors:</label>
+      <div class = "color-adjuster">
+        <button class="button" onclick="colorDecrease(${targeted})" id="decrease">-</button>
+        <p id="color-quantity">${products[targeted].colors}</p>
+        <button class="button" onclick="colorIncrease(${targeted})" id="increase">+</button>
+      </div>
+      <label for="notes">Describe your quilt:</label>
+      <textarea id="notes" name="notes" rows="5" cols="40" onfocusout="storeNotes(this.value, ${targeted})">Here you can describe how you'd like your quilt to look (colors, patterns, etc)</textarea>`
+    cartAddDetails.innerHTML += customOptions;
+  }
+
   let addButton = document.getElementById(`add-${products[targeted].id}`);
   addButton.addEventListener("click", function () {
       addToCart(products[targeted]);
     });
 }
+
 
 // Generate cart page
 if (document.getElementById("shopping-cart") !== null) { //check that we're on the cart page
@@ -266,13 +346,13 @@ if (document.getElementById("shopping-cart") !== null) { //check that we're on t
           </tbody>
         </table>`;  
       for(i=0; i<cartArr.length; i++){
-        let itemTotal=(cartArr[i].quantity*cartArr[i].price)
+        let itemTotal=(cartArr[i].quantity*cartArr[i].total);
         cartTotal += itemTotal;
         const cartItem = `
         <tr id="item-${i}">
           <td><img src = "${cartArr[i].img}" alt = "${cartArr[i].desc}" </td>
           <td><a href = "${cartArr[i].link}">${cartArr[i].name}</a></td>
-          <td><div class = "quantity-adjuster" >
+          <td><div id = "quantity-adjuster" >
             <button class="button" onclick="productDecrease(${i})" id="decrease-${i}">-</button>
             <p id="quantity-${i}">${cartArr[i].quantity}</p>
             <button class="button" onclick="productIncrease(${i})" id="increase-${i}">+</button>
@@ -311,18 +391,28 @@ if (document.getElementById("shopping-cart") !== null) { //check that we're on t
 if (document.getElementById("tool-controls") !== null) {
   console.log("this is the design page");
   document.getElementById("tool-controls").innerHTML = `
-    <button class="button" id="puff-designer">Design a Puff Quilt</button>
-    <button class="button" id="hex-designer">Design a Hex Quilt</button>
+    <div id="designer-buttons">
+        <button class="button design-type" id="puff-designer">Puff Quilt</button>
+        <button class="button design-type" id="hex-designer">Standard Hex Quilt</button>
+        <button class="button design-type" id="minihex-designer">Mini Hex Quilt</button>
+    </div>
+    <div id="size-buttons"></div>
     <div id="p5"></div>`
 
-    let puffButton = document.getElementById("puff-designer");
-    puffButton.addEventListener("click", function () {
-      setPuff();
-    });
-    let hexButton = document.getElementById("hex-designer");
-    hexButton.addEventListener("click", function () {
-      setHex();
-    });
+  let puffButton = document.getElementById("puff-designer");
+  puffButton.addEventListener("click", function () {
+    setPuff();
+  });
+
+  let hexButton = document.getElementById("hex-designer");
+  hexButton.addEventListener("click", function () {
+    setHex();
+  });
+
+  let minihexButton = document.getElementById("minihex-designer");
+  minihexButton.addEventListener("click", function () {
+    setMinihex();
+  });
 }
 
 
@@ -338,15 +428,14 @@ function addToCart(y) {
     getIdFromPage();
     cartArr = JSON.parse(localStorage.getItem("cart"));
     cartQuantity = JSON.parse(localStorage.getItem("quantity"));
-    if(currentID === "custom-hex" || currentID === "custom-puff"){ //custom quilts get added to the cart separately rather than just increasing quantity
-        cartArr.push(y);
-        localStorage.setItem("cart", JSON.stringify(cartArr));
-        cartQuantity++;
-        let cartIndicators = document.getElementsByClassName("cart-indicator");
-        for(i=0; i<cartIndicators.length; i++){
-            cartIndicators[i].innerHTML = cartQuantity;
-          }
-        localStorage.setItem("quantity", JSON.stringify(cartQuantity));
+    if(currentID === "hex-custom" || currentID === "puff-custom"){ //custom quilts get added to the cart separately rather than just increasing quantity
+      y.quantity = 1;
+      cartArr.push(y);
+      localStorage.setItem("cart", JSON.stringify(cartArr));
+      cartQuantity++;
+      let cartIndicator = document.getElementById("cart-indicator");
+      cartIndicator.innerHTML = cartQuantity;
+      localStorage.setItem("quantity", JSON.stringify(cartQuantity));
     }
     else {
       let foundItem = cartArr.findIndex(function(z) {
@@ -357,10 +446,8 @@ function addToCart(y) {
         cartArr[foundItem].quantity++;
         localStorage.setItem("cart", JSON.stringify(cartArr));
         cartQuantity++;
-        let cartIndicators = document.getElementsByClassName("cart-indicator");
-          for(i=0; i<cartIndicators.length; i++){
-            cartIndicators[i].innerHTML = cartQuantity;
-          }
+        let cartIndicator = document.getElementById("cart-indicator");
+        cartIndicator.innerHTML = cartQuantity;
         localStorage.setItem("quantity", JSON.stringify(cartQuantity));
         }
       else {
@@ -368,10 +455,8 @@ function addToCart(y) {
         cartArr.push(y);
         localStorage.setItem("cart", JSON.stringify(cartArr));
         cartQuantity++;
-        let cartIndicators = document.getElementsByClassName("cart-indicator");
-        for(i=0; i<cartIndicators.length; i++){
-            cartIndicators[i].innerHTML = cartQuantity;
-          }
+        let cartIndicator = document.getElementById("cart-indicator");
+        cartIndicator.innerHTML = cartQuantity;
         localStorage.setItem("quantity", JSON.stringify(cartQuantity));
       }
     }
@@ -383,10 +468,8 @@ function addToCart(y) {
     localStorage.setItem("cart", JSON.stringify(cartArr));
     let cartQuantity = 0;
     cartQuantity++;
-    let cartIndicators = document.getElementsByClassName("cart-indicator");
-      for(i=0; i<cartIndicators.length; i++){
-        cartIndicators[i].innerHTML = cartQuantity;
-      }
+    let cartIndicator = document.getElementById("cart-indicator");
+    cartIndicator.innerHTML = cartQuantity;
     localStorage.setItem("quantity", JSON.stringify(cartQuantity));
   }
 }
@@ -400,10 +483,8 @@ function productDecrease(position){
       cartArr.splice(position, 1);
       localStorage.setItem("cart", JSON.stringify(cartArr));
       cartQuantity--;
-      let cartIndicators = document.getElementsByClassName("cart-indicator");
-      for(i=0; i<cartIndicators.length; i++){
-        cartIndicators[i].innerHTML = cartQuantity;
-      }
+      let cartIndicator = document.getElementById("cart-indicator");
+      cartIndicator.innerHTML = cartQuantity;
       localStorage.setItem("quantity", JSON.stringify(cartQuantity));
       window.location.reload();
     }
@@ -413,15 +494,13 @@ function productDecrease(position){
     cartArr[position].quantity--;
     console.log(cartArr[position].quantity)
     document.getElementById(`quantity-${position}`).innerText = cartArr[position].quantity;
-    document.getElementById(`subtotal-${position}`).innerText = (cartArr[position].quantity*cartArr[position].price);
-    cartTotal-=cartArr[position].price;
+    document.getElementById(`subtotal-${position}`).innerText = (cartArr[position].quantity*cartArr[position].total);
+    cartTotal-=cartArr[position].total;
     document.getElementById("cart-total").innerText = `Total: $${cartTotal}`;
     localStorage.setItem("cart", JSON.stringify(cartArr));
     cartQuantity--;
-    let cartIndicators = document.getElementsByClassName("cart-indicator");
-    for(i=0; i<cartIndicators.length; i++){
-      cartIndicators[i].innerHTML = cartQuantity;
-    }
+    let cartIndicator = document.getElementById("cart-indicator");
+    cartIndicator.innerHTML = cartQuantity;
     localStorage.setItem("quantity", JSON.stringify(cartQuantity));
   }
 }
@@ -433,25 +512,218 @@ function productIncrease(position){
   cartArr[position].quantity++;
   console.log(cartArr[position].quantity)
   document.getElementById(`quantity-${position}`).innerText = cartArr[position].quantity;
-  document.getElementById(`subtotal-${position}`).innerText = (cartArr[position].quantity*cartArr[position].price);
-  cartTotal+=cartArr[position].price;
+  document.getElementById(`subtotal-${position}`).innerText = (cartArr[position].quantity*cartArr[position].total);
+  cartTotal+=cartArr[position].total;
   document.getElementById("cart-total").innerText = `Total: $${cartTotal}`;
   localStorage.setItem("cart", JSON.stringify(cartArr));
   cartQuantity++;
-  let cartIndicators = document.getElementsByClassName("cart-indicator");
-  for(i=0; i<cartIndicators.length; i++){
-    cartIndicators[i].innerHTML = cartQuantity;
-  }
+  let cartIndicator = document.getElementById("cart-indicator");
+  cartIndicator.innerHTML = cartQuantity;
   localStorage.setItem("quantity", JSON.stringify(cartQuantity));
 }
 
 //Functions for managing custom design tool page
 function setPuff(){
+  document.getElementById("size-buttons").innerHTML = `
+    <button onclick="setPuffSize(0)" class="button" id="baby-puff">Baby Puff Quilt</button>
+    <button onclick="setPuffSize(1)" class="button" id="throw-puff">Throw Puff Quilt</button>
+    <button onclick="setPuffSize(2)" class="button" id="twin-puff">Twin Puff Quilt</button>`
+}
+
+let puffQuiltSizes = [{width: 10, height: 14},{width: 17, height: 22},{width: 24, height: 30}];
+function setPuffSize(z){
+  let query = new URLSearchParams(puffQuiltSizes[z]);
+  let queryString = query.toString();
+  let iframePath = `puff-designer.html?${queryString}`;
   document.getElementById("p5").innerHTML = `
-    <iframe src="puff-designer.html"></iframe>;`
+    <iframe src="${iframePath}"></iframe>`
 }
 
 function setHex(){
+  document.getElementById("size-buttons").innerHTML = `
+    <button onclick="setHexSize(0)" class="button" id="baby-hex">Baby Hexagon Quilt</button>
+    <button onclick="setHexSize(1)" class="button" id="throw-hex">Throw Hexagon Quilt</button>
+    <button onclick="setHexSize(2)" class="button" id="twin-hex">Twin Hexagon Quilt</button>
+    <button onclick="setHexSize(3)" class="button" id="queen-hex">Queen Hexagon Quilt</button>
+    <button onclick="setHexSize(4)" class="button" id="king-hex">King Hexagon Quilt</button>`
+}
+
+let hexQuiltSizes = [{width: 8, height: 10},{width: 11, height: 15},{width: 15, height: 21},{width: 19, height: 25},{width: 23, height: 25}];
+function setHexSize(z){
+  let query = new URLSearchParams(hexQuiltSizes[z]);
+  let queryString = query.toString();
+  let iframePath = `hex-designer.html?${queryString}`;
   document.getElementById("p5").innerHTML = `
-    <iframe src="hex-designer.html"></iframe>;`
+    <iframe src="${iframePath}"></iframe>`
+}
+
+function setMinihex(){
+
+  document.getElementById("size-buttons").innerHTML = `
+    <button onclick="setMinihexSize(0)" class="button" id="baby-minihex">Baby Mini Hexagon Quilt</button>
+    <button onclick="setMinihexSize(1)" class="button" id="throw-minihex">Throw Mini Hexagon Quilt</button>
+    <button onclick="setMinihexSize(2)" class="button" id="twin-minihex">Twin Mini Hexagon Quilt</button>
+    <button onclick="setMinihexSize(3)" class="button" id="queen-minihex">Queen Mini Hexagon Quilt</button>
+    <button onclick="setMinihexSize(4)" class="button" id="king-minihex">King Mini Hexagon Quilt</button>`
+}
+
+let minihexQuiltSizes = [{width: 13, height: 16},{width: 18, height: 25},{width: 25, height: 35},{width: 32, height: 41},{width: 37, height: 41}];
+function setMinihexSize(z){
+  let query = new URLSearchParams(minihexQuiltSizes[z]);
+  let queryString = query.toString();
+  let iframePath = `minihex-designer.html?${queryString}`;
+  document.getElementById("p5").innerHTML = `
+    <iframe src="${iframePath}"></iframe>`
+}
+
+//Functions for choosing custom quilt options
+function hexquiltSizePrice(a){
+  let targeted = products.findIndex(function (x) {
+    return x.id === currentID;
+  });
+  console.log(a);
+  products[targeted].size = a;
+  switch (a){
+  case "baby":
+    products[targeted].sizePrice = -80;
+    break;
+  case "twin":
+    products[targeted].sizePrice = 40;
+    break;
+  case "queen":
+    products[targeted].sizePrice = 80;
+    break;
+  case "king":
+    products[targeted].sizePrice = 100;
+    break;
+  default:
+    products[targeted].sizePrice = 0;
+  }
+  products[targeted].total = (products[targeted].price + products[targeted].sizePrice + products[targeted].hexPrice + products[targeted].backingPrice + products[targeted].colorsPrice);
+  console.log(products[targeted].total);
+  document.getElementById("price").innerHTML = `&dollar; ${products[targeted].total}`
+  return products[targeted].sizePrice; 
+}
+
+function hexSizePrice(b){
+ let targeted = products.findIndex(function (x) {
+    return x.id === currentID;
+  });
+  console.log(b);
+  products[targeted].hexsize = b;
+  if (b == "mini"){
+    products[targeted].hexPrice = 50;
+  }
+  else {
+    products[targeted].hexPrice = 0;
+  }
+  products[targeted].total = (products[targeted].price + products[targeted].sizePrice + products[targeted].hexPrice + products[targeted].backingPrice + products[targeted].colorsPrice);
+  console.log(products[targeted].total);
+  document.getElementById("price").innerHTML = `&dollar; ${products[targeted].total}`
+  return products[targeted].hexPrice; 
+}
+
+function hexBackingPrice(c){
+  let targeted = products.findIndex(function (x) {
+    return x.id === currentID;
+  });
+  console.log(c);
+  products[targeted].backing = c;
+  switch (c){
+  case "flannel":
+    products[targeted].backingPrice = 50;
+    break;
+  case "fleece":
+    products[targeted].backingPrice = 50;
+    break;
+  default:
+    products[targeted].backingPrice = 0;
+  }
+  products[targeted].total = (products[targeted].price + products[targeted].sizePrice + products[targeted].hexPrice + products[targeted].backingPrice + products[targeted].colorsPrice);
+  console.log(products[targeted].total);
+  document.getElementById("price").innerHTML = `&dollar; ${products[targeted].total}`
+  return products[targeted].backingPrice; 
+}
+
+function puffSizePrice(d){
+  let targeted = products.findIndex(function (x) {
+    return x.id === currentID;
+  });
+  console.log(d);
+  products[targeted].size = d;
+  switch (d){
+  case "baby":
+    products[targeted].sizePrice = -80;
+    break;
+  case "twin":
+    products[targeted].sizePrice = 50;
+    break;
+  default:
+    products[targeted].sizePrice = 0;
+  }
+  products[targeted].total = (products[targeted].price + products[targeted].sizePrice + products[targeted].backingPrice + products[targeted].colorsPrice);
+  console.log(products[targeted].total);
+  document.getElementById("price").innerHTML = `&dollar; ${products[targeted].total}`
+  return products[targeted].total; 
+}
+
+function puffBackingPrice(e){
+  let targeted = products.findIndex(function (x) {
+    return x.id === currentID;
+  });
+  console.log(e);
+  products[targeted].backing = e;
+  switch (e){
+  case "flannel":
+    products[targeted].backingPrice = 50;
+    break;
+  case "fleece":
+    products[targeted].backingPrice = 50;
+    break;
+  default:
+    products[targeted].backingPrice = 0;
+  }
+  products[targeted].total = (products[targeted].price + products[targeted].sizePrice + products[targeted].backingPrice + products[targeted].colorsPrice);
+  console.log(products[targeted].total);
+  document.getElementById("price").innerHTML = `&dollar; ${products[targeted].total}`
+  return products[targeted].backingPrice; 
+}
+
+function colorDecrease(f){
+  console.log(products[f].colors);
+  products[f].colors--;
+  console.log(products[f].colors)
+  document.getElementById("color-quantity").innerHTML = `${products[f].colors}`;
+  if (products[f].colors > 6){
+    products[f].colorsPrice = (products[f].colors * 10)
+  }
+  else {
+    products[f].colorsPrice = 0;
+  }
+  products[f].total = (products[f].price + products[f].sizePrice + products[f].backingPrice + products[f].colorsPrice);
+  console.log(products[f].total);
+  document.getElementById("price").innerHTML = `&dollar; ${products[f].total}`
+}
+
+function colorIncrease(g){
+  console.log(products[g].colors);
+  products[g].colors++;
+  console.log(products[g].colors)
+  document.getElementById("color-quantity").innerHTML = `${products[g].colors}`;
+  if (products[g].colors > 6){
+    products[g].colorsPrice = ((products[g].colors - 6) * 10)
+  }
+  else {
+    products[g].colorsPrice = 0;
+  }
+  products[g].total = (products[g].price + products[g].sizePrice + products[g].backingPrice + products[g].colorsPrice);
+  console.log(products[g].total);
+  document.getElementById("price").innerHTML = `&dollar; ${products[g].total}`
+}
+
+function storeNotes(h, targeted){
+  console.log(h);
+  console.log(products[targeted].note)
+  products[targeted].note = h;
+  console.log(products[targeted].note);
 }
