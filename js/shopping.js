@@ -160,6 +160,12 @@ const products = [
   },
 ];
 
+const hexQuilts = products.filter(isHexQuilt);
+const puffQuilts = products.filter(isPuffQuilt);
+const customQuilts = products.filter(isCustom);
+const other = products.filter(isOther);
+
+
 let cartTotal = 0;
 
 //update cart indicator
@@ -195,20 +201,32 @@ if (document.getElementById("home-main") !== null) {
 //Generate shop page
 if (document.getElementById("shop-main") !== null) {
   const shopMain = document.getElementById("shop-main");
-
-  products.forEach((result) => {
+  shopMain.innerHTML = `
+    <div id="filters-container">
+      <div class = "filter"><label for="hex-quilts">Hexagon Quilts (${hexQuilts.length})</label>
+      <input type="checkbox" id="hex-quilts" onchange="filterProducts()"></div>
+      <div class = "filter"><label for="puff-quilts">Puff Quilts (${puffQuilts.length})</label>
+      <input type="checkbox" id="puff-quilts" onchange="filterProducts()"></div>
+      <div class = "filter"><label for="custom-quilts">Customizable (${customQuilts.length})</label>
+      <input type="checkbox" id="custom-quilts" onchange="filterProducts()"></div>
+      <div class = "filter"><label for="other">Other Products (${other.length})</label>
+      <input type="checkbox" id="other" onchange="filterProducts()"></div>
+    </div>
+    <div id="product-cards"></div>`
+  
+  const productCards = document.getElementById("product-cards");
+    products.forEach((result) => {
     // create card for each product
     const catalog = `
       <div class="product">
-          <a href= "${result.link}"><img src="${result.img}" alt="${result.desc}"></a>
-          <h2>${result.name}</h2>
-          <h2>&dollar; ${result.total}</h2>
-          </div>
-      `;
+        <a href= "${result.link}"><img src="${result.img}" alt="${result.desc}"></a>
+        <h2>${result.name}</h2>
+        <h2 class= "product-price">&dollar; ${result.total}</h2>
+      </div>`;
     //Add the card to the main products page
-    shopMain.innerHTML += catalog;
-  });
-}
+    productCards.innerHTML += catalog;
+    });
+  }
 
 //Generate product pages
 let currentID = undefined;
@@ -406,6 +424,110 @@ if (document.getElementById("tool-controls") !== null) {
   });
 }
 
+//Functions for filtering products
+function isHexQuilt(i){
+  if(i.id.includes("hex")) {
+    return true;
+  }
+}
+
+function isPuffQuilt(i){
+  if(i.id.includes("puff")) {
+    return true;
+  }
+}
+
+function isCustom(i){
+  if(i.id.includes("custom")) {
+    return true;
+  }
+}
+
+function isOther(i){
+  if((i.id.includes("hex") == false) && (i.id.includes("puff")==false) &&(i.id.includes("custom")==false)) {
+    return true;
+  }
+}
+
+function filterProducts(){
+  let isChecked = document.querySelectorAll('input:checked').length
+    console.log (isChecked);
+    const productCards = document.getElementById("product-cards");
+    productCards.innerHTML="";
+    if (isChecked === 0){
+      products.forEach((result) => {
+        // create card for each product
+        const catalog = `
+          <div class="product">
+              <a href= "${result.link}"><img src="${result.img}" alt="${result.desc}"></a>
+              <h2>${result.name}</h2>
+              <h2>&dollar; ${result.total}</h2>
+              </div>
+          `;
+        //Add the card to the main products page
+        productCards.innerHTML += catalog;
+      });
+    }
+    else {
+      productCards.innerHTML="";
+      if (document.getElementById("hex-quilts").checked == true){
+        hexQuilts.forEach((result) => {
+          // create card for each product
+          const catalog = `
+            <div class="product">
+                <a href= "${result.link}"><img src="${result.img}" alt="${result.desc}"></a>
+                <h2>${result.name}</h2>
+                <h2>&dollar; ${result.total}</h2>
+                </div>
+            `;
+          //Add the card to the main products page
+          productCards.innerHTML += catalog;
+        });
+      }
+        if (document.getElementById("puff-quilts").checked == true){
+        puffQuilts.forEach((result) => {
+          // create card for each product
+          const catalog = `
+            <div class="product">
+                <a href= "${result.link}"><img src="${result.img}" alt="${result.desc}"></a>
+                <h2>${result.name}</h2>
+                <h2>&dollar; ${result.total}</h2>
+                </div>
+            `;
+          //Add the card to the main products page
+          productCards.innerHTML += catalog;
+        });
+      }
+        if (document.getElementById("custom-quilts").checked == true){
+        customQuilts.forEach((result) => {
+          // create card for each product
+          const catalog = `
+            <div class="product">
+                <a href= "${result.link}"><img src="${result.img}" alt="${result.desc}"></a>
+                <h2>${result.name}</h2>
+                <h2>&dollar; ${result.total}</h2>
+                </div>
+            `;
+          //Add the card to the main products page
+          productCards.innerHTML += catalog;
+        });
+      }
+        if (document.getElementById("other").checked == true){
+        other.forEach((result) => {
+          // create card for each product
+          const catalog = `
+            <div class="product">
+                <a href= "${result.link}"><img src="${result.img}" alt="${result.desc}"></a>
+                <h2>${result.name}</h2>
+                <h2>&dollar; ${result.total}</h2>
+                </div>
+            `;
+          //Add the card to the main products page
+          productCards.innerHTML += catalog;
+        });
+      }
+    }
+}
 
 //Functions for managing cart
 function getIdFromPage(){ //Feels like a silly solution but lets me guarantee that the content I'm populating and pulling from matches the page I'm on
