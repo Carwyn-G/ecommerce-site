@@ -183,10 +183,10 @@ function mouseClicked() {
     //an undo button sets the last clicked square to its previous color
     else if (mouseX < (buttonWidth) && mouseY<(buttonHeight*colorPalette.length + buttonHeight)){
         if (undoBaseLayer==true){
-            quiltBase[lastClickedRow][lastClickedColumn][2]=previousColor[column][row];
+            quiltBase[lastClickedRow][lastClickedColumn][2]=previousColor[row][column];
         }
         else{
-            quiltFace[lastClickedRow][lastClickedColumn][2]=previousColor[column][row];
+            quiltFace[lastClickedRow][lastClickedColumn][2]=previousColor[row][column];
         }
     }
     else if (mouseX < (buttonWidth*2) && mouseY<(buttonHeight*colorPalette.length + buttonHeight)){
@@ -229,9 +229,7 @@ function mouseClicked() {
 function getSizeFromPage(){ //Feels like a silly solution but it makes sense to me and the other methods I found when looking up seemed to rely too much on a lot of frameworks I don't know anything about
   let path = window.location.href;
   let shortPath = (path.replace("http://127.0.0.1:5500/minihex-designer.html?", ""));
-  console.log(shortPath);
   splitStr = (shortPath.split("&"));
-  console.log(splitStr);
   let quiltWidth = (splitStr[0].replace("width=", ""));
   let quiltHeight = (splitStr[1].replace("height=", ""));
   return [quiltWidth, quiltHeight];

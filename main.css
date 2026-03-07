@@ -50,6 +50,16 @@ label {
     text-align: center;
 }
 
+a {
+    text-decoration: none;
+    color: #2d2e73;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #2d2e73;
+}
+
 /* Header/Navbar */
 header {
     background-color: #E0E1FF;
@@ -399,13 +409,18 @@ td {
         grid-column: 2 / 3;
     }
     #designer-buttons {
+        grid-row: 1 / 2;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        grid-row: 1 / 2;
+
     }
     #size-buttons {
         grid-row: 2 / 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     iframe {

@@ -139,9 +139,7 @@ function keyPressed() {
 function getSizeFromPage(){ //Feels like a silly solution but it makes sense to me and the other methods I found when looking up seemed to rely too much on a lot of frameworks I don't know anything about
   let path = window.location.href;
   let shortPath = (path.replace("http://127.0.0.1:5500/puff-designer.html?", ""));
-  console.log(shortPath);
   splitStr = (shortPath.split("&"));
-  console.log(splitStr);
   let quiltWidth = (splitStr[0].replace("width=", ""));
   let quiltHeight = (splitStr[1].replace("height=", ""));
   return [quiltWidth, quiltHeight];

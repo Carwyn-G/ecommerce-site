@@ -129,6 +129,7 @@ const products = [
     backing: "cotton",
     backingPrice: 0,
     colors: 6,
+    colorsPrice: 0,
     note: "Here you can describe how you'd like your quilt to look (colors, patterns, etc)"
   },
   {
@@ -154,6 +155,7 @@ const products = [
     backing: "cotton",
     backingPrice: 0,
     colors: 6,
+    colorsPrice: 0,
     note: "Here you can describe how you'd like your quilt to look (colors, patterns, etc)"
   },
 ];
@@ -175,7 +177,6 @@ let cartTotal = 0;
 //Generate home page
 if (document.getElementById("home-main") !== null) {
   const homeMain = document.getElementById("home-main");
-  console.log("this is the home page");
   for (i = 0; i < 3; i++) {
     // create card for each product
     let feature = `
@@ -212,15 +213,12 @@ if (document.getElementById("shop-main") !== null) {
 //Generate product pages
 let currentID = undefined;
 getIdFromPage();
-console.log(currentID);
 
 if (document.getElementById(currentID) !== null) {
-  console.log(`This is the ${currentID} page`);
   let productPage = document.getElementById(currentID);
   let targeted = products.findIndex(function (x) {
     return x.id === currentID;
   });
-  console.log(targeted);
   let productInfo = `
     <div class = "product-images">
       <img src="${products[targeted].img}" alt="${products[targeted].desc}">
@@ -241,7 +239,6 @@ if (document.getElementById(currentID) !== null) {
   productPage.innerHTML += productInfo;
 
   if (currentID == "hex-custom") {
-    console.log ("custom hex page");
     let targeted = products.findIndex(function (x) {
       return x.id === currentID;
     });
@@ -278,7 +275,6 @@ if (document.getElementById(currentID) !== null) {
   }
 
   if (currentID == "puff-custom") {
-    console.log ("custom puff page");
     let targeted = products.findIndex(function (x) {
       return x.id === currentID;
     });
@@ -317,12 +313,9 @@ if (document.getElementById(currentID) !== null) {
 // Generate cart page
 if (document.getElementById("shopping-cart") !== null) { //check that we're on the cart page
   const shoppingCart = document.getElementById("shopping-cart");
-  console.log("this is the cart page");
   if (localStorage.getItem("cart") !== null) { //check that the cart exists
-    console.log("cart exists")
     cartArr = JSON.parse(localStorage.getItem("cart"));
     if (cartArr.length === 0){ //check that the cart contains things
-      console.log ("Cart is empty")
       shoppingCart.innerHTML = `
         <div id=empty-cart>
           <h1>Shopping Cart</h1>
@@ -377,7 +370,6 @@ if (document.getElementById("shopping-cart") !== null) { //check that we're on t
     }
   }
   else {
-    console.log("Cart does not exist")
     shoppingCart.innerHTML = `
         <div id=empty-cart>
           <h1>Shopping Cart</h1>
@@ -389,7 +381,6 @@ if (document.getElementById("shopping-cart") !== null) { //check that we're on t
 
 //Generate design tool controls
 if (document.getElementById("tool-controls") !== null) {
-  console.log("this is the design page");
   document.getElementById("tool-controls").innerHTML = `
     <div id="designer-buttons">
         <button class="button design-type" id="puff-designer">Puff Quilt</button>
@@ -441,7 +432,6 @@ function addToCart(y) {
       let foundItem = cartArr.findIndex(function(z) {
         return z.id === currentID;
         });
-      console.log(foundItem);
       if (foundItem > -1) { //If the product to be added to the cart already exists in the cart, only increase the quantity, don't push a new copy to the array
         cartArr[foundItem].quantity++;
         localStorage.setItem("cart", JSON.stringify(cartArr));
@@ -490,9 +480,7 @@ function productDecrease(position){
     }
   }
   else{
-    console.log(cartArr[position].quantity);
     cartArr[position].quantity--;
-    console.log(cartArr[position].quantity)
     document.getElementById(`quantity-${position}`).innerText = cartArr[position].quantity;
     document.getElementById(`subtotal-${position}`).innerText = (cartArr[position].quantity*cartArr[position].total);
     cartTotal-=cartArr[position].total;
@@ -508,9 +496,7 @@ function productDecrease(position){
 function productIncrease(position){
   cartArr = JSON.parse(localStorage.getItem("cart"));
   cartQuantity = JSON.parse(localStorage.getItem("quantity"));
-  console.log(cartArr[position].quantity);
   cartArr[position].quantity++;
-  console.log(cartArr[position].quantity)
   document.getElementById(`quantity-${position}`).innerText = cartArr[position].quantity;
   document.getElementById(`subtotal-${position}`).innerText = (cartArr[position].quantity*cartArr[position].total);
   cartTotal+=cartArr[position].total;
@@ -581,7 +567,6 @@ function hexquiltSizePrice(a){
   let targeted = products.findIndex(function (x) {
     return x.id === currentID;
   });
-  console.log(a);
   products[targeted].size = a;
   switch (a){
   case "baby":
@@ -600,7 +585,6 @@ function hexquiltSizePrice(a){
     products[targeted].sizePrice = 0;
   }
   products[targeted].total = (products[targeted].price + products[targeted].sizePrice + products[targeted].hexPrice + products[targeted].backingPrice + products[targeted].colorsPrice);
-  console.log(products[targeted].total);
   document.getElementById("price").innerHTML = `&dollar; ${products[targeted].total}`
   return products[targeted].sizePrice; 
 }
@@ -609,7 +593,6 @@ function hexSizePrice(b){
  let targeted = products.findIndex(function (x) {
     return x.id === currentID;
   });
-  console.log(b);
   products[targeted].hexsize = b;
   if (b == "mini"){
     products[targeted].hexPrice = 50;
@@ -618,7 +601,6 @@ function hexSizePrice(b){
     products[targeted].hexPrice = 0;
   }
   products[targeted].total = (products[targeted].price + products[targeted].sizePrice + products[targeted].hexPrice + products[targeted].backingPrice + products[targeted].colorsPrice);
-  console.log(products[targeted].total);
   document.getElementById("price").innerHTML = `&dollar; ${products[targeted].total}`
   return products[targeted].hexPrice; 
 }
@@ -627,7 +609,6 @@ function hexBackingPrice(c){
   let targeted = products.findIndex(function (x) {
     return x.id === currentID;
   });
-  console.log(c);
   products[targeted].backing = c;
   switch (c){
   case "flannel":
@@ -640,7 +621,6 @@ function hexBackingPrice(c){
     products[targeted].backingPrice = 0;
   }
   products[targeted].total = (products[targeted].price + products[targeted].sizePrice + products[targeted].hexPrice + products[targeted].backingPrice + products[targeted].colorsPrice);
-  console.log(products[targeted].total);
   document.getElementById("price").innerHTML = `&dollar; ${products[targeted].total}`
   return products[targeted].backingPrice; 
 }
@@ -649,7 +629,6 @@ function puffSizePrice(d){
   let targeted = products.findIndex(function (x) {
     return x.id === currentID;
   });
-  console.log(d);
   products[targeted].size = d;
   switch (d){
   case "baby":
@@ -662,7 +641,6 @@ function puffSizePrice(d){
     products[targeted].sizePrice = 0;
   }
   products[targeted].total = (products[targeted].price + products[targeted].sizePrice + products[targeted].backingPrice + products[targeted].colorsPrice);
-  console.log(products[targeted].total);
   document.getElementById("price").innerHTML = `&dollar; ${products[targeted].total}`
   return products[targeted].total; 
 }
@@ -671,7 +649,6 @@ function puffBackingPrice(e){
   let targeted = products.findIndex(function (x) {
     return x.id === currentID;
   });
-  console.log(e);
   products[targeted].backing = e;
   switch (e){
   case "flannel":
@@ -684,46 +661,36 @@ function puffBackingPrice(e){
     products[targeted].backingPrice = 0;
   }
   products[targeted].total = (products[targeted].price + products[targeted].sizePrice + products[targeted].backingPrice + products[targeted].colorsPrice);
-  console.log(products[targeted].total);
   document.getElementById("price").innerHTML = `&dollar; ${products[targeted].total}`
   return products[targeted].backingPrice; 
 }
 
 function colorDecrease(f){
-  console.log(products[f].colors);
   products[f].colors--;
-  console.log(products[f].colors)
   document.getElementById("color-quantity").innerHTML = `${products[f].colors}`;
-  if (products[f].colors > 6){
+  if (products[f].colors >= 6){
     products[f].colorsPrice = (products[f].colors * 10)
   }
   else {
     products[f].colorsPrice = 0;
   }
   products[f].total = (products[f].price + products[f].sizePrice + products[f].backingPrice + products[f].colorsPrice);
-  console.log(products[f].total);
   document.getElementById("price").innerHTML = `&dollar; ${products[f].total}`
 }
 
 function colorIncrease(g){
-  console.log(products[g].colors);
   products[g].colors++;
-  console.log(products[g].colors)
   document.getElementById("color-quantity").innerHTML = `${products[g].colors}`;
-  if (products[g].colors > 6){
+  if (products[g].colors >= 6){
     products[g].colorsPrice = ((products[g].colors - 6) * 10)
   }
   else {
     products[g].colorsPrice = 0;
   }
   products[g].total = (products[g].price + products[g].sizePrice + products[g].backingPrice + products[g].colorsPrice);
-  console.log(products[g].total);
   document.getElementById("price").innerHTML = `&dollar; ${products[g].total}`
 }
 
 function storeNotes(h, targeted){
-  console.log(h);
-  console.log(products[targeted].note)
   products[targeted].note = h;
-  console.log(products[targeted].note);
 }
