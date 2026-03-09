@@ -239,9 +239,9 @@ if (document.getElementById(currentID) !== null) {
   });
   let productInfo = `
     <div class = "product-images">
-      <img src="${products[targeted].img}" alt="${products[targeted].desc}">
-      <img src="${products[targeted].secondImg}" alt="${products[targeted].secondDesc}">
-      <img src="${products[targeted].thirdImg}" alt="${products[targeted].thirdDesc}">
+      <img src=".${products[targeted].img}" alt="${products[targeted].desc}">
+      <img src=".${products[targeted].secondImg}" alt="${products[targeted].secondDesc}">
+      <img src=".${products[targeted].thirdImg}" alt="${products[targeted].thirdDesc}">
     </div>
     <div class = "product-details">
       <h1>${products[targeted].name}</h1>
