@@ -609,7 +609,7 @@ function productDecrease(position){
   else{
     cartArr[position].quantity--;
     document.getElementById(`quantity-${position}`).innerText = cartArr[position].quantity;
-    document.getElementById(`subtotal-${position}`).innerText = (cartArr[position].quantity*cartArr[position].total);
+    document.getElementById(`subtotal-${position}`).innerText = `&dollar;(cartArr[position].quantity*cartArr[position].total)`;
     cartTotal-=cartArr[position].total;
     document.getElementById("cart-total").innerText = `Total: $${cartTotal}`;
     localStorage.setItem("cart", JSON.stringify(cartArr));
@@ -625,7 +625,7 @@ function productIncrease(position){
   cartQuantity = JSON.parse(localStorage.getItem("quantity"));
   cartArr[position].quantity++;
   document.getElementById(`quantity-${position}`).innerText = cartArr[position].quantity;
-  document.getElementById(`subtotal-${position}`).innerText = (cartArr[position].quantity*cartArr[position].total);
+  document.getElementById(`subtotal-${position}`).innerText = `&dollar;(cartArr[position].quantity*cartArr[position].total)`;
   cartTotal+=cartArr[position].total;
   document.getElementById("cart-total").innerText = `Total: $${cartTotal}`;
   localStorage.setItem("cart", JSON.stringify(cartArr));
