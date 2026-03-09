@@ -534,8 +534,11 @@ function filterProducts(){
 //Functions for managing cart
 function getIdFromPage(){ //Feels like a silly solution but lets me guarantee that the content I'm populating and pulling from matches the page I'm on
   let path = window.location.pathname;
+  console.log(path);
   let shortPath = (path.replace("/ecommerce-site/products/", ""));
+  console.log(shortPath);
   currentID = (shortPath.replace(".html", ""));
+  console.log(currentID);
 }
 
 function addToCart(y) {
