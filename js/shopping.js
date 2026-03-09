@@ -122,7 +122,7 @@ const products = [
     thirdImg: "./images/puff-custom-3.jpg",
     thirdDesc: "A puff quilt with a pixel art design of a carrtoony red fox on a green background",
     quantity: 0,
-    longDesc: `If you're looking for something personal, custom quilts are available and can be made with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the <a href= "../designer.html">Design</a> page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and only 6 fabrics used for the face, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality. Please see the FAQ for care instructions for washing puff quilts.`,
+    longDesc: `If you're looking for something personal, custom quilts are available and can be made with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the <a href= "../designer.html"><b>Design</b></a> page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and only 6 fabrics used for the face, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality. Please see the FAQ for care instructions for washing puff quilts.`,
     price: 400,
     size: "throw",
     sizePrice: 0,
@@ -146,7 +146,7 @@ const products = [
     thirdDesc:
       "A hexagon quilt made up of a variety of honeybee themed print fabrics in yellows and blacks",
     quantity: 0,
-    longDesc: `If you're looking for something personal, custom quilts are available and can be made with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the <a href= "../designer.html">Design</a> page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and 6 fabrics, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality.`,
+    longDesc: `If you're looking for something personal, custom quilts are available and can be made with cotton, flannel, or fleece backings, and in different sizes. To help you realize what sorts of designs are possible, please see the <a href= "../designer.html"><b>Design</b></a> page where you'll find a tool to help you play around with possible designs. Please keep in mind that the starting price for custom quilts is based on a cotton backing and 6 fabrics, additional fabric requirements will incur additional costs. It's recommended to first reach out via the contact page to discuss your design ideas in detail before placing an order, to best ensure that your vision can be made reality.`,
     price: 250,
     size: "throw",
     sizePrice: 0,
@@ -644,7 +644,7 @@ let puffQuiltSizes = [{width: 10, height: 14},{width: 17, height: 22},{width: 24
 function setPuffSize(z){
   let query = new URLSearchParams(puffQuiltSizes[z]);
   let queryString = query.toString();
-  let iframePath = `puff-designer.html?${queryString}`;
+  let iframePath = `./puff-designer.html?${queryString}`;
   document.getElementById("p5").innerHTML = `
     <iframe src="${iframePath}"></iframe>`
 }
@@ -662,7 +662,7 @@ let hexQuiltSizes = [{width: 8, height: 10},{width: 11, height: 15},{width: 15, 
 function setHexSize(z){
   let query = new URLSearchParams(hexQuiltSizes[z]);
   let queryString = query.toString();
-  let iframePath = `hex-designer.html?${queryString}`;
+  let iframePath = `./hex-designer.html?${queryString}`;
   document.getElementById("p5").innerHTML = `
     <iframe src="${iframePath}"></iframe>`
 }
@@ -681,7 +681,7 @@ let minihexQuiltSizes = [{width: 13, height: 16},{width: 18, height: 25},{width:
 function setMinihexSize(z){
   let query = new URLSearchParams(minihexQuiltSizes[z]);
   let queryString = query.toString();
-  let iframePath = `minihex-designer.html?${queryString}`;
+  let iframePath = `./minihex-designer.html?${queryString}`;
   document.getElementById("p5").innerHTML = `
     <iframe src="${iframePath}"></iframe>`
 }
