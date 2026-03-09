@@ -338,7 +338,8 @@ if (document.getElementById("shopping-cart") !== null) { //check that we're on t
         <div id=empty-cart>
           <h1>Shopping Cart</h1>
           <h2>Looks like there's nothing in your cart :(</h2>
-          <h2><a href="products.html">Return to the Store</a></h2>
+          <br>
+          <h2><a href="products.html" class="fake-button">Return to the Store</a></h2>
         </div>`
     }
     else { //details to load for cart content
@@ -392,7 +393,8 @@ if (document.getElementById("shopping-cart") !== null) { //check that we're on t
         <div id=empty-cart>
           <h1>Shopping Cart</h1>
           <h2>Looks like there's nothing in your cart :(</h2>
-          <h2><a href="products.html">Return to the Store</a></h2>
+          <br>
+          <h2><a href="products.html"  class="fake-button">Return to the Store</a></h2>
         </div>`
   }
 }
