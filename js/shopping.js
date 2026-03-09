@@ -4,8 +4,8 @@ const products = [
     name: "Confetti Pride Hexagon Quilt",
     total: 350,
     id: "hex-pride",
-    link: "../products/hex-pride.html",
-    img: "../images/hex-pride.jpg",
+    link: "./products/hex-pride.html",
+    img: "./images/hex-pride.jpg",
     desc: "A quilt made up of hexagons in a variety of LGBTQ pride prints on a white background, with scattered hexagons of solid colors of the rainbow",
     secondImg: "../images/hex-pride-reverse.jpg",
     secondDesc:
